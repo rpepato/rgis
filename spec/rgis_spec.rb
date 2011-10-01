@@ -1,4 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
+require 'services/geometry_service'
 
 describe "Lookup details from arcgis rest directory services" do
 
@@ -19,7 +20,13 @@ describe "Lookup details from arcgis rest directory services" do
   end
   
   it "should reproject a point from 4326 SR to 102113" do
-    RGis.project('http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer', 4326, 102113, :point => { :x => -117, :y => 34 })
+    RGis.project('http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer/project', 
+                4326, 
+                102113, 
+                :point => {
+                  'x' => 19.109209,
+                  'y' => 34.1928918184256
+                }).should =~ [{'x' => 2127227.41534224, 'y' => 4054732.18582985}]
   end
 
 end

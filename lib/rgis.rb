@@ -1,4 +1,5 @@
 require 'rgis/lookup'
+require 'net/http'
 
 module RGis  
   
@@ -27,8 +28,19 @@ module RGis
     geometry_service(uri) != nil
   end
   
-  def self.project(uri, input_reference, output_reference, options = {})
-    json = self.at(uri)
+  def self.project(uri, input_spatial_reference, output_spatial_reference, geometry = {})    
+    args = {
+      'f' => 'json',
+      'inSR' => input_spatial_reference,
+      'outSR' => output_spatial_reference,
+      'geometries' => JSON.unparse({
+        'geometryType' => GEOMETRY_TYPES[geometry.keys.first],
+        'geometries' => [geometry[geometry.keys.first]]
+      })
+    }
+    
+    res, data = Lookup.post(uri, args)
+    JSON.parse(data)['geometries']
   end
 
   private

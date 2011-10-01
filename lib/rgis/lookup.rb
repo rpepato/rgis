@@ -12,5 +12,9 @@ module RGis
       # ObjectBuilder.from_json(JSON.parse(response))
       JSON.parse(response)
     end
+    
+    def self.post(uri, args)
+      Net::HTTP.post_form(URI.parse(uri), args)
+    end
   end
 end
