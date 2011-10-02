@@ -3,6 +3,9 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 
 require 'rspec'
 require 'rgis'
+require 'rgis/geometry_service'
+require 'rgis/lookup'
+require 'rgis/helper'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
