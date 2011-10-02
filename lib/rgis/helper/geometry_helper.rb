@@ -50,7 +50,6 @@ module RGis
             raise ArgumentError, "elements of array geometry must have at only numeric elements"
           end
         end
-
         
         # polygon
         if array.first == array.last
@@ -59,7 +58,6 @@ module RGis
           return self.parse_polyline(array)
         end
         
-        
       end
 
       # parse a hash into a geometry object
@@ -67,11 +65,36 @@ module RGis
         if hash.empty?
           raise ArgumentError, "geometry must have at least one element"
         end
+        
+        valid_hash = hash.select { |key, value|  GEOMETRY_TYPES.has_key?(key)  }
+        geometry_type = valid_hash.keys.first
+        value = valid_hash[geometry_type]
+        
+        # points
+        if geometry_type == :point
+          if value.is_a?(Array)
+              return self.parse_array(value)
+          end
+          if value.is_a?(Hash)
+              if value.empty?
+                raise ArgumentError, "geometry must have at least one element"
+              end
+              if value.has_key?(:x) && value.has_key?(:y)
+                if value.select{ |key, value| !VALID_TYPES.include?(value.class) }.length > 0
+                  raise ArgumentError, "elements of hash geometry must have at only numeric elements"
+                end
+                return self.parse_point(value)
+              end
+          end
+        end
       end
       
       # parse a array of point to point object 
       def self.parse_point(array)
-        return { :geometryType => GEOMETRY_TYPES[:point], :geometries => [{ :x => array[0], :y => array[1] }] }
+        if array.is_a?(Array)
+          return { :geometryType => GEOMETRY_TYPES[:point], :geometries => [{ :x => array[0], :y => array[1] }] }
+        end
+        return { :geometryType => GEOMETRY_TYPES[:point], :geometries => [{ :x => array[:x], :y => array[:y] }] }
       end
     
       # parse a array of point to polygon object 
