@@ -6,7 +6,9 @@ module RGis
 
     # valid geometry types
     GEOMETRY_TYPES = {
-      :point => 'esriGeometryPoint'
+      :point => 'esriGeometryPoint',
+      :polygon => 'esriGeometryPolygon',
+      :polyline => 'esriGeometryPolyline'
     }
     
     class GeometryHelper
@@ -40,17 +42,23 @@ module RGis
           return self.parse_point(array[0])
         end
         
-        
         # should be a point
-        if array.count == 2 && array.count{|a| VALID_TYPES.include?(a.class)} == 2
-          return self.parse_point(array)
-        else
-          raise ArgumentError, "elements of array geometry must have at only numeric elements"
+        if array.count == 2 
+          if array.count{|a| VALID_TYPES.include?(a.class)} == 2
+            return self.parse_point(array)
+          else
+            raise ArgumentError, "elements of array geometry must have at only numeric elements"
+          end
         end
 
-        if array.count{|a| !a.is_a?(Array)} > 0
-          raise ArgumentError, "elements of array geometry must have at only numeric elements"
+        
+        # polygon
+        if array.first == array.last
+          return self.parse_polygon(array)
+        else
+          return self.parse_polyline(array)
         end
+        
         
       end
 
@@ -61,9 +69,19 @@ module RGis
         end
       end
       
-      # validate an array 
+      # parse a array of point to point object 
       def self.parse_point(array)
         return { :geometryType => GEOMETRY_TYPES[:point], :geometries => [{ :x => array[0], :y => array[1] }] }
+      end
+    
+      # parse a array of point to polygon object 
+      def self.parse_polygon(array)
+        return { :geometryType => GEOMETRY_TYPES[:polygon], :rings => [array] }
+      end
+    
+      # parse a array of point to polyline object 
+      def self.parse_polyline(array)
+        return { :geometryType => GEOMETRY_TYPES[:polyline], :paths => [array] }
       end
     
     end

@@ -36,4 +36,18 @@ describe "Lookup details from arcgis rest directory services" do
     geometry[:geometries].should =~ [{ :x => 1, :y => 2 }]
   end
 
+  it "should identify a polygon from array elements" do
+    geometry = RGis::Helper::GeometryHelper.parse([[1, 2],[2, 3], [3, 4], [1, 2]])
+    geometry[:geometryType].should == 'esriGeometryPolygon'
+    geometry[:rings].should be_a(Array)
+    geometry[:rings].should =~ [[[1, 2],[2, 3], [3, 4], [1, 2]]]
+  end
+
+  it "should identify a polyline from array elements" do
+    geometry = RGis::Helper::GeometryHelper.parse([[1, 2],[2, 3], [3, 4]])
+    geometry[:geometryType].should == 'esriGeometryPolyline'
+    geometry[:paths].should be_a(Array)
+    geometry[:paths].should =~ [[[1, 2],[2, 3], [3, 4]]]
+  end
+
 end
