@@ -1,5 +1,4 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-require 'services/geometry_service'
 
 describe "Lookup details from arcgis rest directory services" do
 
