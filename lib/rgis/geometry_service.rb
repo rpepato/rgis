@@ -9,7 +9,7 @@ module RGis
     attr_reader :uri
 
     def initialize(uri)
-      @uri = service_uri(uri)
+      @uri = RGis::Helper::ServiceHelper.service_uri(uri, :geometry_service)
     end
 
     # project a geometry from one spatial reference to another
@@ -20,27 +20,8 @@ module RGis
       request.inSR = input_spatial_reference
       request.outSR = output_spatial_reference
       request.geometries = JSON.unparse(RGis::Helper::GeometryHelper.parse(geometry))
-      Lookup.post(service_uri_for('project'), request)
-    end
-
-
-    private 
-
-    def service_uri (base_uri)
-      base_uri = base_uri.chop if base_uri.end_with?('/')
-      service_name = geometry_service_name(base_uri)
-      "#{base_uri}/#{service_name}/GeometryServer"
+      Lookup.post("#{@uri}/project", request)
     end
     
-    def service_uri_for(service)
-      "#{@uri}/#{service}"
-    end
-
-    def geometry_service_name (base_uri)
-      service_info = Lookup.get(base_uri, {'f' => 'json'})
-      service_info.services.select do |s|
-        return s.name unless s.type != 'GeometryServer'
-      end
-    end
   end
 end
