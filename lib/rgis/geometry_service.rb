@@ -27,6 +27,7 @@ module RGis
     private 
 
     def service_uri (base_uri)
+      base_uri = base_uri.chop if base_uri.end_with?('/')
       service_name = geometry_service_name(base_uri)
       "#{base_uri}/#{service_name}/GeometryServer"
     end

@@ -7,6 +7,11 @@ describe "Lookup details from arcgis rest directory services" do
     gs.uri.should == 'http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer'
   end
 
+  it "should initialize a geometry service from a uri with slash in the end of service name" do
+    gs = RGis::GeometryService.new('http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/')
+    gs.uri.should == 'http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer'
+  end
+
 
   it "should reproject a point from 4326 SR to 102113" do
     gs = RGis::GeometryService.new('http://sampleserver1.arcgisonline.com/ArcGIS/rest/services')
