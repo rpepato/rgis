@@ -1,3 +1,5 @@
+require 'rgis/lookup'
+
 module RGis
   module Helper
     
