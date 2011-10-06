@@ -8,6 +8,7 @@ module RGis
     GEOMETRY_TYPES = {
       :point => 'esriGeometryPoint',
       :polygon => 'esriGeometryPolygon',
+      :envelope => 'esriGeometryEnvelope',
       :polyline => 'esriGeometryPolyline'
     }
     
@@ -87,6 +88,14 @@ module RGis
               end
           end
         end
+        
+        if geometry_type == :envelope
+          if value.is_a?(Array)
+              return self.parse_envelope(value)
+          end
+          return self.parse_envelope(value)
+        end
+        
       end
       
       # parse a array of point to point object 
@@ -105,6 +114,14 @@ module RGis
       # parse a array of point to polyline object 
       def self.parse_polyline(array)
         return { :geometryType => GEOMETRY_TYPES[:polyline], :paths => [array] }
+      end
+
+      # parse a hash to envelope
+      def self.parse_envelope(array)
+        if array.is_a?(Array)
+          return { :geometryType => GEOMETRY_TYPES[:envelope], :geometries => { :xmin => array[0][0], :ymin => array[0][1], :xmax => array[1][0], :ymax => array[1][1] } }
+        end
+        return { :geometryType => GEOMETRY_TYPES[:envelope], :geometries => array }
       end
     
     end

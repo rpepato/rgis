@@ -77,4 +77,18 @@ describe "Lookup details from arcgis rest directory services" do
     geometry[:geometries].should =~ [{ :x => 1, :y => 2 }]
   end
 
+  it "should identify a envelope from hash with x and y max e min" do
+    geometry = RGis::Helper::GeometryHelper.parse(:envelope => { :xmin => 1, :ymin => 2, :xmax => 1, :ymax => 2 })
+    geometry[:geometryType].should == 'esriGeometryEnvelope'
+    geometry[:geometries].should be_a(Hash)
+    geometry[:geometries].should == { :xmin => 1, :ymin => 2, :xmax => 1, :ymax => 2 }
+  end
+
+  it "should identify a envelope from hash with two arrays" do
+    geometry = RGis::Helper::GeometryHelper.parse(:envelope => [[1, 2],[2, 3]])
+    geometry[:geometryType].should == 'esriGeometryEnvelope'
+    geometry[:geometries].should be_a(Hash)
+    geometry[:geometries].should == { :xmin => 1, :ymin => 2, :xmax => 2, :ymax => 3 }
+  end
+
 end
