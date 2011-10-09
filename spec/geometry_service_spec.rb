@@ -15,7 +15,7 @@ describe "Lookup details from arcgis rest directory services" do
 
   it "should reproject a point from 4326 SR to 102113" do
     gs = RGis::GeometryService.new('http://sampleserver1.arcgisonline.com/ArcGIS/rest/services')
-    gs.project(4326, 102113, [19.109209, 34.1928918184256]).geometries.should =~ [{'x' => 2127227.41534224, 'y' => 4054732.18582985}]
-    gs.project(4326, 102113, [[19.109209, 34.1928918184256]]).geometries.should =~ [{'x' => 2127227.41534224, 'y' => 4054732.18582985}]
+    gs.project(4326, 102113, :point => [19.109209, 34.1928918184256]).geometries.should =~ [{'x' => 2127227.41534224, 'y' => 4054732.18582985}]
+    gs.project(4326, 102113, :point => [[19.109209, 34.1928918184256]]).geometries.should =~ [{'x' => 2127227.41534224, 'y' => 4054732.18582985}]
   end
 end
