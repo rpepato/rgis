@@ -20,12 +20,10 @@ module RGis
       #
       # geometry can be a Array or a Hash
       def self.parse(geometry)
-        if geometry.is_a?(Array)
-          self.parse_array(geometry)
-        elsif geometry.is_a?(Hash)
+        if geometry.is_a?(Hash)
           self.parse_hash(geometry)
         else
-          raise ArgumentError, "argument geometry must be a Array or Hash"
+          raise ArgumentError, "argument geometry must a Hash"
         end
       end
     
@@ -36,7 +34,7 @@ module RGis
         if array.empty?
           raise ArgumentError, "geometry must have at least one element"
         end
-        
+
         # should be a point
         if array.count == 1
           if !array[0].is_a?(Array)
@@ -92,11 +90,17 @@ module RGis
         end
         
         if geometry_type == :envelope
-          if value.is_a?(Array)
-              return self.parse_envelope(value)
-          end
           return self.parse_envelope(value)
         end
+
+        if geometry_type == :polygon
+          return self.parse_polygon(value)
+        end
+
+        if geometry_type == :polyline
+          return self.parse_polyline(value)
+        end
+
         
       end
       
