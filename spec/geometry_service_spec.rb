@@ -48,7 +48,7 @@ describe "Lookup details from arcgis rest directory services" do
        :union_results => false
      }      
      
-     geometries = [
+     returned_polygons = [
          {
            'rings' => 
            [
@@ -111,7 +111,7 @@ describe "Lookup details from arcgis rest directory services" do
          }
        ]
             
-     @gs.buffer(4326, geometry, params).geometries.should =~ geometries
+     @gs.buffer(4326, geometry, params).geometries.should =~ returned_polygons
   end                                                                    
   
   it "should calculate area and length from a set of geometries" do
