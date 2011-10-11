@@ -9,8 +9,6 @@ It's still a work in progress (just starting actually), so a lot of code is yet 
 The team can guarantee the GIS side, but be gentle with us in the Ruby side.
 
 
-Description goes here.
-
 == Contributing to rgis
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
