@@ -56,7 +56,8 @@ module RGis
       request.polygons = JSON.unparse(polygons)
       Lookup.post("#{@uri}/areasAndLengths", request)                                                   
     end                                      
-    
+                                                    
+    # should calculate the length of polylines
     def lengths (input_spatial_reference, polylines, params)
       request = Request.new
       request.f = 'json'
@@ -66,7 +67,15 @@ module RGis
       request.polylines = JSON.unparse(polylines)  
       Lookup.post("#{@uri}/lengths", request)            
     end
-    
+
+    # should determine the label point from polygons
+    def label_points(input_spatial_reference, polygons)
+      request = Request.new
+      request.f = 'json'
+      request.sr = input_spatial_reference
+      request.polygons = JSON.unparse(polygons)  
+      Lookup.post("#{@uri}/labelPoints", request)      
+    end
     
   end
 end

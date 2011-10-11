@@ -192,5 +192,19 @@ describe "Lookup details from arcgis rest directory services" do
       @gs.lengths(4269, polylines, params).lengths.should =~ [8.4271951019424E-05, 4.52245385166335E-05]
 
    end
-  
+
+  it "should determine the label point for polygons" do
+     polygons = [
+       {'rings' => 
+         [
+           [
+             [-105,34],[-104,34],[-104,35],[-105,35],[-105,34]
+           ]
+         ]
+       }
+     ]     
+     
+     @gs.label_points(4326, polygons).labelPoints.should =~ [{'x' => -104.5, 'y' => 34.5000000000001}]
+     
+  end
 end
