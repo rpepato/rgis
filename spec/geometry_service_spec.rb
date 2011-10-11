@@ -146,7 +146,7 @@ describe "Lookup details from arcgis rest directory services" do
      
   end                                    
   
-  it "should calculate length from polylines" do
+  it "should calculate lengths from polylines" do
      polylines = [
       {
        'paths' => [
@@ -168,6 +168,29 @@ describe "Lookup details from arcgis rest directory services" do
      
      @gs.lengths(4269, polylines, params).lengths.should =~ [456.036465954783, 277.294288451794]
      
-  end
+  end  
+  
+  it "should calculate lengths from polylines when geodesic parameter is missing" do
+      polylines = [
+       {
+        'paths' => [
+         [[-117,34],[-116,34],[-117,33]],
+         [[-115,44],[-114,43],[-115,43]]
+        ]
+       },
+       {
+        'paths' => [
+         [[32.49,17.83],[31.96,17.59],[30.87,17.01],[30.11,16.86]]
+        ]
+       }
+      ]                                               
+
+      params = {
+        :length_unit => RGis::Helper::UNIT_TYPES[:kilometer],
+      }                                                 
+
+      @gs.lengths(4269, polylines, params).lengths.should =~ [8.4271951019424E-05, 4.52245385166335E-05]
+
+   end
   
 end
