@@ -14,6 +14,22 @@ module RGis
       :polyline => 'esriGeometryPolyline'
     }      
     
+    # ESRI area unit types
+    AREA_UNIT_TYPES = {
+      :square_inches => 'esriSquareInches',
+      :square_feet => 'esriSquareFeet',
+      :square_yards => 'esriSquareYards',
+      :acres => 'esriAcres',
+      :square_miles => 'esriSquareMiles',
+      :square_millimiters => 'esriSquareMillimiters',
+      :square_centimeters => 'esriSquareCentimeters',
+      :square_decimeters => 'esriSquareDecimeters',
+      :square_meters => 'esriSquareMeters',
+      :ares => 'esriSquareAres',
+      :hectares => 'esriHectares',
+      :square_kilometers => 'esriSquareKilometers'
+    }
+    
     # valid unit types for WKID (Well Known IDs)
     UNIT_TYPES = {
       :meter => 9001,
@@ -25,7 +41,7 @@ module RGis
       :nautical_mile => 9030,
       :survey_chain => 9033,
       :survey_link => 9034,
-      :surveymile => 9035,
+      :survey_mile => 9035,
       :kilometer => 9036,
       :clarke_yard => 9037,
       :clarke_chain => 9038,

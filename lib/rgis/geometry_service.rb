@@ -31,18 +31,29 @@ module RGis
       request.geometries = JSON.unparse(geometry)    
       Lookup.post("#{@uri}/simplify", request)
     end  
-    
+                                            
+    # generates a buffer geometry 
     def buffer(input_spatial_reference, geometry, params)
       request = Request.new
       request.f = 'json'
       request.inSR = input_spatial_reference
-      request.outSR = params[:outSR]
-      request.bufferSR = params[:bufferSR]
+      request.outSR = params[:out_sr]
+      request.bufferSR = params[:buffer_sr]
       request.distances = params[:distances]
       request.unit = params[:unit]
-      request.unionResults = params[:unionResults]                                                      
+      request.unionResults = params[:union_results]                                                      
       request.geometries = JSON.unparse(geometry)       
       Lookup.post("#{@uri}/buffer", request)
-    end    
+    end                           
+    
+    def length_and_area(input_spatial_reference, geometry, params)
+      request = Request.new
+      request.f = 'json'
+      request.sr = input_spatial_reference
+      request.lengthUnit = params[:length_unit]
+      request.areaUnit = JSON.unparse(params[:area_unit])
+      request.polygons = JSON.unparse(geometry)
+      Lookup.post("#{@uri}/areasAndLengths", request)                                                   
+    end
   end
 end

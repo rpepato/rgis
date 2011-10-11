@@ -41,14 +41,14 @@ describe "Lookup details from arcgis rest directory services" do
      }
      
      params = {
-       :outSR => 4326,
-       :bufferSR => 102113,
+       :out_sr => 4326,
+       :buffer_sr => 102113,
        :distances => 0.01,  
        :unit => RGis::Helper::UNIT_TYPES[:meter],
-       :unionResults => false
+       :union_results => false
      }      
      
-     return_value = [
+     geometries = [
          {
            'rings' => 
            [
@@ -111,8 +111,39 @@ describe "Lookup details from arcgis rest directory services" do
          }
        ]
             
-     @gs.buffer(4326, geometry, params).geometries.should =~ return_value
-
+     @gs.buffer(4326, geometry, params).geometries.should =~ geometries
+  end                                                                    
+  
+  it "should calculate area and length from a set of geometries" do
+     geometry = [
+       {
+         :rings => 
+          [
+            [
+              [-628833.344099998,206205.236200001],
+              [-630269.659900002,192298.906100001],
+              [-631848.233800001,173991.394400001],
+              [-616471.690300003,341822.557500001],
+              [-620213.661300004,301450.162799999],
+              [-625923.431999996,237538.0579],
+              [-628833.344099998,206205.236200001]
+            ]
+          ]
+       }
+     ]   
+     
+     returned_areas = [615.362788718949]
+     returned_lengths =  [209.444905018474]
+     
+     params ={
+       :length_unit => RGis::Helper::UNIT_TYPES[:survey_mile],
+       :area_unit => {:areaUnit => RGis::Helper::AREA_UNIT_TYPES[:acres]}
+     }
+     
+     response = @gs.length_and_area(102009, geometry, params)
+     response.areas.should =~ returned_areas
+     response.lengths.should =~ returned_lengths
+     
   end
   
 end
