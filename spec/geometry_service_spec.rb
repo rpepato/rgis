@@ -114,8 +114,8 @@ describe "Lookup details from arcgis rest directory services" do
      @gs.buffer(4326, geometry, params).geometries.should =~ returned_polygons
   end                                                                    
   
-  it "should calculate area and length from a set of geometries" do
-     geometry = [
+  it "should calculate area and length from a polygon" do
+     polygons = [
        {
          :rings => 
           [
@@ -140,9 +140,33 @@ describe "Lookup details from arcgis rest directory services" do
        :area_unit => {:areaUnit => RGis::Helper::AREA_UNIT_TYPES[:acres]}
      }
      
-     response = @gs.length_and_area(102009, geometry, params)
+     response = @gs.length_and_area(102009, polygons, params)
      response.areas.should =~ returned_areas
      response.lengths.should =~ returned_lengths
+     
+  end                                    
+  
+  it "should calculate length from polylines" do
+     polylines = [
+      {
+       'paths' => [
+        [[-117,34],[-116,34],[-117,33]],
+        [[-115,44],[-114,43],[-115,43]]
+       ]
+      },
+      {
+       'paths' => [
+        [[32.49,17.83],[31.96,17.59],[30.87,17.01],[30.11,16.86]]
+       ]
+      }
+     ]                                               
+     
+     params = {
+       :length_unit => RGis::Helper::UNIT_TYPES[:kilometer],
+       :geodesic => true       
+     }                                                 
+     
+     @gs.lengths(4269, polylines, params).lengths.should =~ [456.036465954783, 277.294288451794]
      
   end
   

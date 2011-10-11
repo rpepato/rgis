@@ -46,14 +46,27 @@ module RGis
       Lookup.post("#{@uri}/buffer", request)
     end                           
     
-    def length_and_area(input_spatial_reference, geometry, params)
+    # calculates length and area from polygons
+    def length_and_area(input_spatial_reference, polygons, params)
       request = Request.new
       request.f = 'json'
       request.sr = input_spatial_reference
       request.lengthUnit = params[:length_unit]
       request.areaUnit = JSON.unparse(params[:area_unit])
-      request.polygons = JSON.unparse(geometry)
+      request.polygons = JSON.unparse(polygons)
       Lookup.post("#{@uri}/areasAndLengths", request)                                                   
+    end                                      
+    
+    def lengths (input_spatial_reference, polylines, params)
+      request = Request.new
+      request.f = 'json'
+      request.sr = input_spatial_reference
+      request.lengthUnit = params[:length_unit]
+      request.geodesic = params[:geodesic]
+      request.polylines = JSON.unparse(polylines)  
+      Lookup.post("#{@uri}/lengths", request)            
     end
+    
+    
   end
 end
