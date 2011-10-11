@@ -1,5 +1,14 @@
 = rgis
 
+== Unleash the power of GIS.
+
+* Enjoy all the power of the GIS world in your application, accessing the features of the ESRI ArcGIS Server in the ruby way.
+
+This project has the intention to expose in an easy and flexible way a great amount of the ArcGIS server rest capabilities, giving developer access to geometry projection, tiled and dynamic layers, geocoding and much more.
+It's still a work in progress (just starting actually), so a lot of code is yet to be written, and any help is welcome.
+The team can guarantee the GIS side, but be gentle with us in the Ruby side.
+
+
 Description goes here.
 
 == Contributing to rgis
