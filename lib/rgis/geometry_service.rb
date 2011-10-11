@@ -21,7 +21,15 @@ module RGis
       request.outSR = output_spatial_reference
       request.geometries = JSON.unparse(RGis::Helper::GeometryHelper.parse(geometry))
       Lookup.post("#{@uri}/project", request)
-    end
+    end       
     
+    
+    def simplify(input_spatial_reference, geometry)
+      request = Request.new
+      request.f = 'json'
+      request.sr = input_spatial_reference    
+      request.geometries = JSON.unparse(geometry)    
+      Lookup.post("#{@uri}/simplify", request)
+    end      
   end
 end

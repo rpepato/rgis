@@ -13,7 +13,7 @@ module RGis
       :envelope => 'esriGeometryEnvelope',
       :polyline => 'esriGeometryPolyline'
     }
-    
+   
     class GeometryHelper
     
       # parse a array or hash into a geometry in order to be serialized to JSON or another format
