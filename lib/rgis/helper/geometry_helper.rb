@@ -14,6 +14,23 @@ module RGis
       :polyline => 'esriGeometryPolyline'
     }      
     
+    # valid types for ESRI's Relational Operations
+    RELATION_TYPES = {
+      :cross => 'esriGeometryRelationCross',
+      :disjoint => 'esriGeometryRelationDisjoint',
+      :in => 'esriGeometryRelationIn',
+      :interior_intersection => 'esriGeometryRelationInteriorIntersection',
+      :intersection => 'esriGeometryRelationIntersection',
+      :line_coincidence => 'esriGeometryRelationLineCoincidence',
+      :line_touch => 'esriGeometryRelationLineTouch',
+      :overlap => 'esriGeometryRelationOverLap',
+      :point_touch => 'esriGeometryRelationPointTouch',
+      :touch => 'esriGeometryRelationTouch',
+      :within => 'esriGeometryRelationWithin',
+      :relation => 'esriGeometryRelationRelation' 
+    }
+
+    
     # ESRI area unit types
     AREA_UNIT_TYPES = {
       :square_inches => 'esriSquareInches',

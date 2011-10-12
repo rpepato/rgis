@@ -207,4 +207,39 @@ describe "Lookup details from arcgis rest directory services" do
      @gs.label_points(4326, polygons).labelPoints.should =~ [{'x' => -104.5, 'y' => 34.5000000000001}]
      
   end
+  
+  it "should perform relation validation on geometries" do
+    geometry = {
+      'geometryType' => RGis::Helper::GEOMETRY_TYPES[:point],
+      'geometries' => 
+      [
+        {:x => -104.53, :y => 34.74},
+        {:x => -63.53, :y => 10.23}
+      ]
+    }                                                       
+       
+       
+    related_geometry = {
+      'geometryType' => RGis::Helper::GEOMETRY_TYPES[:polygon],
+      'geometries' => 
+        [
+          {
+            'rings' =>
+            [
+              [
+                [-105,34],[-104,34],[-104,35],[-105,35],[-105,34]
+              ]
+            ]
+          }
+        ]
+      }                                                          
+        
+       
+    params = {
+     :relation => RGis::Helper::RELATION_TYPES[:within],
+     :relation_param => nil         
+    }         
+       
+    @gs.relation(4326, geometry, related_geometry, params).relations.should =~ [{'geometry1Index' => 0, 'geometry2Index' => 0  }]
+  end
 end
