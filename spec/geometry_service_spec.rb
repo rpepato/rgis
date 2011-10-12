@@ -241,5 +241,54 @@ describe "Lookup details from arcgis rest directory services" do
     }         
        
     @gs.relation(4326, geometry, related_geometry, params).relations.should =~ [{'geometry1Index' => 0, 'geometry2Index' => 0  }]
+  end  
+  
+  it "should perform densify on geometries" do
+    geometry = {
+      'geometryType' => RGis::Helper::GEOMETRY_TYPES[:polyline],
+      'geometries' =>
+      [                                          
+        {
+          'paths' => 
+          [
+            [
+              [-17313284.793, 2209625.866],
+              [-17312808.186926104, 2210504.3164105085],
+              [-17308518.732261017, 2218410.3701050845],
+              [-17260185.82890302, 2310809.9320710143],
+              [-17307752.671522036, 2223194.8742101695],
+              [-14501308.957, 7392483.288],
+              [-13773503.446, 6003036.405 ]
+            ]
+          ]
+        }
+      ]
+    }
+    
+    params = {
+      :maximum_segment_length => 10000000,
+      :geodesic => false,
+      :length_unit => nil
+    }                    
+    
+    geometries_returned = [
+      {
+        'paths' => 
+        [
+          [
+            [-17313284.793, 2209625.866], 
+            [-17312808.1869261, 2210504.31641051], 
+            [-17308518.732261, 2218410.37010508], 
+            [-17260185.828903, 2310809.93207101], 
+            [-17307752.671522, 2223194.87421017], 
+            [-14501308.957, 7392483.288], 
+            [-13773503.446, 6003036.405]
+          ]
+        ]
+      }
+    ]
+    
+    @gs.densify(3395, geometry, params).geometries.should =~ geometries_returned
   end
+  
 end

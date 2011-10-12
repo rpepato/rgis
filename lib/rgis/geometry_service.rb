@@ -85,9 +85,20 @@ module RGis
       request.geometries1 = JSON.unparse(geometry)
       request.geometries2 = JSON.unparse(related_geometry)
       request.relation = params[:relation]
-      request.relationParam = params[:relationParam]
+      request.relationParam = params[:relation_param]
       Lookup.post("#{@uri}/relation", request)
     end
     
+    # densify a geometry
+    def densify(input_spatial_reference, geometry, params)
+      request = Request.new
+      request.f = 'json'
+      request.sr = input_spatial_reference
+      request.geometries = JSON.unparse(geometry)
+      request.maxSegmentLength = params[:maximum_segment_length]
+      request.geodesic = params[:geodesic]          
+      request.lengthUnit = params[:length_unit]
+      Lookup.post("#{@uri}/densify", request)      
+    end
   end
 end
