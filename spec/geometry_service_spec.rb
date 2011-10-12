@@ -291,4 +291,34 @@ describe "Lookup details from arcgis rest directory services" do
     @gs.densify(3395, geometry, params).geometries.should =~ geometries_returned
   end
   
+  it "should calculate distance between geometries" do
+    first_geometry = 
+    {
+      'geometryType' => RGis::Helper::GEOMETRY_TYPES[:point],
+      'geometry' =>
+      {
+        :x => -117.47697998046874,
+        :y =>34.121858211839566,
+        'spatialReference' => {'wkid' => 4326}
+      }
+    }  
+    
+    second_geometry = {
+      'geometryType' => RGis::Helper::GEOMETRY_TYPES[:point],
+      'geometry' =>
+      {
+        :x => -117.41586853027343,
+        :y => 34.108125301683316,
+        'spatialReference' => {'wkid' => 4326}
+      }
+    }
+    
+    params = {
+      :distance_unit => RGis::Helper::UNIT_TYPES[:meter],
+      :geodesic => true 
+    }
+    
+    @gs.distance(4326, first_geometry, second_geometry, params).distance.should == 5840.30963758173
+  end
+  
 end

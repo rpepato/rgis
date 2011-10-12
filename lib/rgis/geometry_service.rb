@@ -100,5 +100,17 @@ module RGis
       request.lengthUnit = params[:length_unit]
       Lookup.post("#{@uri}/densify", request)      
     end
+    
+    # calculates the distance between two geometries
+    def distance(input_spatial_reference, first_geometry, second_geometry, params)
+      request = Request.new
+      request.f = 'json'
+      request.sr = input_spatial_reference
+      request.geometry1 = JSON.unparse(first_geometry)
+      request.geometry2 = JSON.unparse(second_geometry)      
+      request.distanceUnit = params[:distance_unit]
+      request.geodesic = params[:geodesic]          
+      Lookup.post("#{@uri}/distance", request)      
+    end
   end
 end
