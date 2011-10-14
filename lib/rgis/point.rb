@@ -7,8 +7,7 @@ module RGis
   class Point
     include RGis::Services::GeometryService
 
-    attr_accessor :x
-    attr_accessor :y
+    attr_accessor :x, :y
 
     def initialize(x, y)
       @x = Float(x)
@@ -16,7 +15,7 @@ module RGis
     end
 
     def == other
-      @x == other.x && @y == other.y
+      @x == Float(other.x) && @y == Float(other.y)
     end
 
     def to_json
@@ -28,9 +27,7 @@ module RGis
     def to_hash
       r = Request.new
       r.geometryType = RGis::Helper::GEOMETRY_TYPES[:point]
-      r.geometries = [
-        {'x' => @x, 'y' => @y}
-      ]     
+      r.geometries = [{:x => @x, :y => @y}]     
       r
     end  
   end
