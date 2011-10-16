@@ -15,7 +15,7 @@ module RGis
     end
 
     def == other
-      @x == Float(other.x) && @y == Float(other.y)
+      @x == other.x && @y == other.y
     end
 
     def to_json
@@ -25,10 +25,11 @@ module RGis
     private 
 
     def to_hash
-      r = Request.new
-      r.geometryType = RGis::Helper::GEOMETRY_TYPES[:point]
-      r.geometries = [{:x => @x, :y => @y}]     
-      r
+      request = Request.new
+      request.geometryType = RGis::Helper::GEOMETRY_TYPES[:point]
+      request.geometries = [{:x => @x, :y => @y}]     
+      request
     end  
+    
   end
 end

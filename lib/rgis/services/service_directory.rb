@@ -1,4 +1,3 @@
-require 'singleton'
 require 'rgis/helper'
 
 module RGis
