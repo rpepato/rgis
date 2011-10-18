@@ -1,5 +1,4 @@
 require 'rgis/request'
-require 'rgis/helper'
 require 'rgis/services/geometry_service'
 require 'json'
 
