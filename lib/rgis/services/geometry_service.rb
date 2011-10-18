@@ -20,6 +20,7 @@ module RGis
           end
           polygon
         end
+        
       end
       
       def project!(params = {})
@@ -34,9 +35,9 @@ module RGis
       private
       
       def result_type? (geometry)
-        nil unless geometry.respond_to?('geometries')
-        RGis::Helper::GEOMETRY_TYPES[:point] if geometry.geometries[0].respond_to?('x')
-        RGis::Helper::GEOMETRY_TYPES[:polygon] if geometry.geometries[0].respond_to?('rings')
+        return nil unless geometry.respond_to?('geometries')
+        return RGis::Helper::GEOMETRY_TYPES[:point] if geometry.geometries[0].respond_to?(:x)
+        return RGis::Helper::GEOMETRY_TYPES[:polygon] if geometry.geometries[0].respond_to?('rings')
       end
       
       def project_geometry(params = {})
