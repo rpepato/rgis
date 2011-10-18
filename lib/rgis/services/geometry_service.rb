@@ -28,8 +28,14 @@ module RGis
         if result_type?(response) == RGis::Helper::GEOMETRY_TYPES[:point]
           self.x = Float(response.geometries[0][:x])
           self.y = Float(response.geometries[0][:y])
-          self
+        elsif result_type?(response) == RGis::Helper::GEOMETRY_TYPES[:polygon]
+          response.geometries[0].rings.each_with_index do |item, index|
+            item.each_with_index do |point, point_index|  
+              self.rings[index].points[point_index] = RGis::Point.new(point[0], point[1])
+            end
+          end
         end
+        self
       end 
             
       private

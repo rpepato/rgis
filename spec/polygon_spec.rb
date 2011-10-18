@@ -44,4 +44,17 @@ describe 'Polygon Geometry' do
     polygon.project(:from => 4326, :to => 102100).should == another_polygon    
   end
   
+  it "should change points from a polygon when reprojected" do
+    ring = RGis::Ring.new()
+    ring.points << RGis::Point.new(2,2) << RGis::Point.new(4,4) << RGis::Point.new(6,6) << RGis::Point.new(2,2)
+    polygon = RGis::Polygon.new()
+    polygon.rings << ring    
+    polygon.project!(:from => 4326, :to => 102100)
+    
+    polygon.rings[0].points[0].should == RGis::Point.new(222638.981586547,222684.208505545)
+    polygon.rings[0].points[1].should ==  RGis::Point.new(445277.963173094,445640.109656027)
+    polygon.rings[0].points[2].should == RGis::Point.new(667916.944759641,669141.057044245)
+    polygon.rings[0].points[3].should == RGis::Point.new(222638.981586547,222684.208505545)
+  end
+  
 end
