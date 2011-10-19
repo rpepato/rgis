@@ -1,17 +1,17 @@
 module RGis
-  class Ring
+  class Path
     attr_accessor :points
-    
+   
     def initialize
       @points = []
     end
-    
+   
     def ==(other)
       @points == other.points
     end
-
+   
     def valid?
-      @points.count > 3 && @points.first == @points.last
+      @points.count > 1
     end
     
   end

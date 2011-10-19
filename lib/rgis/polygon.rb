@@ -12,7 +12,7 @@ module RGis
       @rings = []
     end
     
-    def == other
+    def ==(other)
       @rings == other.rings
     end
     

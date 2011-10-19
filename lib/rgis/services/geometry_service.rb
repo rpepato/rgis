@@ -19,8 +19,17 @@ module RGis
             polygon.rings << r
           end
           polygon
-        end
-        
+        elsif result_type?(response) == RGis::Helper::GEOMETRY_TYPES[:polyline]
+          polyline = RGis::Polyline.new()
+          response.geometries[0].paths.each do |path|
+            p = RGis::Path.new()
+            path.each do |point|
+              p.points << Point.new(point[0],point[1])
+            end
+            polyline.paths << p
+          end
+          polyline
+        end        
       end
       
       def project!(params = {})
@@ -29,9 +38,15 @@ module RGis
           self.x = Float(response.geometries[0][:x])
           self.y = Float(response.geometries[0][:y])
         elsif result_type?(response) == RGis::Helper::GEOMETRY_TYPES[:polygon]
-          response.geometries[0].rings.each_with_index do |item, index|
-            item.each_with_index do |point, point_index|  
-              self.rings[index].points[point_index] = RGis::Point.new(point[0], point[1])
+          response.geometries[0].rings.each_with_index do |ring, ring_index|
+            ring.each_with_index do |point, point_index|  
+              self.rings[ring_index].points[point_index] = RGis::Point.new(point[0], point[1])
+            end
+          end
+        elsif result_type?(response) == RGis::Helper::GEOMETRY_TYPES[:polyline]
+          response.geometries[0].paths.each_with_index do |path, path_index|
+            path.each_with_index do |point, point_index|
+              self.paths[path_index].points[point_index] = RGis::Point.new(point[0], point[1])
             end
           end
         end
@@ -44,6 +59,7 @@ module RGis
         return nil unless geometry.respond_to?('geometries')
         return RGis::Helper::GEOMETRY_TYPES[:point] if geometry.geometries[0].respond_to?(:x)
         return RGis::Helper::GEOMETRY_TYPES[:polygon] if geometry.geometries[0].respond_to?('rings')
+        return RGis::Helper::GEOMETRY_TYPES[:polyline] if geometry.geometries[0].respond_to?('paths')
       end
       
       def project_geometry(params = {})
