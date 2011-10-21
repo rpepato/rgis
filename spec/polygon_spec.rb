@@ -57,4 +57,18 @@ describe 'Polygon Geometry' do
     polygon.rings[0].points[3].should == RGis::Point.new(222638.981586547,222684.208505545)
   end
   
+  it "should simplify a polygon" do 
+    ring = RGis::Ring.new()
+    ring.points << RGis::Point.new(2,0) << RGis::Point.new(6,0) << RGis::Point.new(6,4) << RGis::Point.new(3,4.3) << RGis::Point.new(2,4) << RGis::Point.new(2,0)
+    polygon = RGis::Polygon.new()
+    polygon.rings << ring
+    
+    another_ring = RGis::Ring.new()
+    another_ring.points << RGis::Point.new(6.00000000000006, 5.6843418860808E-14) << RGis::Point.new(2.00000000000006, 5.6843418860808E-14) << RGis::Point.new(2.00000000000006, 4.00000000000006) << RGis::Point.new(3.00000000000006, 4.30000000000007) << RGis::Point.new(6.00000000000006, 4.00000000000006) << RGis::Point.new(6.00000000000006, 5.6843418860808E-14)
+    another_polygon = RGis::Polygon.new()
+    another_polygon.rings << another_ring
+    
+    polygon.simplify(:spatial_reference => 4326).should == another_polygon
+  end
+  
 end

@@ -7,6 +7,30 @@ module RGis
  
       def project(params = {})
         response = project_geometry(params)
+        parse_result(response)
+      end
+      
+      def project!(params = {})
+        response = project_geometry(params)
+        parse_result_for_bang_method(response)
+        self
+      end 
+      
+      def simplify(params = {})
+        response = simplify_geometry(params)
+        parse_result(response)
+      end
+                  
+      private
+      
+      def result_type? (geometry)
+        return nil unless geometry.respond_to?('geometries')
+        return RGis::Helper::GEOMETRY_TYPES[:point] if geometry.geometries[0].respond_to?(:x)
+        return RGis::Helper::GEOMETRY_TYPES[:polygon] if geometry.geometries[0].respond_to?('rings')
+        return RGis::Helper::GEOMETRY_TYPES[:polyline] if geometry.geometries[0].respond_to?('paths')
+      end
+      
+      def parse_result(response)
         if result_type?(response) == RGis::Helper::GEOMETRY_TYPES[:point]
           Point.new(response.geometries[0][:x], response.geometries[0][:y])
         elsif result_type?(response) == RGis::Helper::GEOMETRY_TYPES[:polygon]
@@ -32,8 +56,7 @@ module RGis
         end        
       end
       
-      def project!(params = {})
-        response = project_geometry(params)
+      def parse_result_for_bang_method(response)
         if result_type?(response) == RGis::Helper::GEOMETRY_TYPES[:point]
           self.x = Float(response.geometries[0][:x])
           self.y = Float(response.geometries[0][:y])
@@ -49,17 +72,7 @@ module RGis
               self.paths[path_index].points[point_index] = RGis::Point.new(point[0], point[1])
             end
           end
-        end
-        self
-      end 
-            
-      private
-      
-      def result_type? (geometry)
-        return nil unless geometry.respond_to?('geometries')
-        return RGis::Helper::GEOMETRY_TYPES[:point] if geometry.geometries[0].respond_to?(:x)
-        return RGis::Helper::GEOMETRY_TYPES[:polygon] if geometry.geometries[0].respond_to?('rings')
-        return RGis::Helper::GEOMETRY_TYPES[:polyline] if geometry.geometries[0].respond_to?('paths')
+        end        
       end
       
       def project_geometry(params = {})
@@ -70,6 +83,15 @@ module RGis
         request.geometries = self.to_json
         response = Lookup.post("#{RGis::Services::ServiceDirectory.geometry_service_uri}/project", request)
         response        
+      end
+      
+      def simplify_geometry(params ={})
+        request = Request.new
+        request.f = 'json'
+        request.sr = params[:spatial_reference]
+        request.geometries = self.to_json
+        response = Lookup.post("#{RGis::Services::ServiceDirectory.geometry_service_uri}/simplify", request)
+        response
       end
 
     end

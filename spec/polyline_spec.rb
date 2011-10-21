@@ -52,4 +52,12 @@ describe 'Polyline Geometry' do
     polyline.paths[0].points[1].should ==  RGis::Point.new(445277.963173094,445640.109656027)
   end  
   
+  it "should simplify a polyline" do
+    path = RGis::Path.new()
+    path.points << RGis::Point.new(2,2) << RGis::Point.new(4,4)
+    polyline = RGis::Polyline.new()
+    polyline.paths << path    
+    polyline.simplify(:spatial_reference => 4326).should == polyline
+  end
+  
 end

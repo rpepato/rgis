@@ -30,6 +30,11 @@ describe 'Point Geometry' do
     point.y.should == 1920825.04037747
   end
   
+  it "should simplify a point" do
+    point = RGis::Point.new(15,17)
+    point.simplify(:spatial_reference => 4326).should == point
+  end
+    
 end
 
 
