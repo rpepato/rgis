@@ -1,0 +1,28 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services?f=json
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain;charset=utf-8
+      date: 
+      - Sun, 23 Oct 2011 21:51:00 GMT
+      etag: 
+      - "1139058324"
+      server: 
+      - Microsoft-IIS/7.0
+      x-powered-by: 
+      - ASP.NET
+      content-length: 
+      - "221"
+      connection: 
+      - keep-alive
+    body: "{\"currentVersion\":10.01,\"folders\":[\"Demographics\",\"Elevation\",\"Locators\",\"Louisville\",\"Network\",\"Petroleum\",\"PublicSafety\",\"Specialty\",\"TaxParcel\",\"WaterTemplate\"],\"services\":[{\"name\":\"Geometry\",\"type\":\"GeometryServer\"}]}"
+    http_version: "1.1"

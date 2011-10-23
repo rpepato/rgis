@@ -30,10 +30,12 @@ describe "test lookup helper class" do
   end
 
   it "should get a information from arcgis services directory" do
-    response = RGis::Lookup.get('http://sampleserver1.arcgisonline.com/ArcGIS/rest/services', :f => 'json')
-    response.currentVersion.should == 10.01
-    response.folders.count == 7
-    response.services.count == 1
+    VCR.use_cassette('lookup_get', :record => :new_episodes) do
+      response = RGis::Lookup.get('http://sampleserver1.arcgisonline.com/ArcGIS/rest/services', :f => 'json')
+      response.currentVersion.should == 10.01
+      response.folders.count == 7
+      response.services.count == 1
+    end
   end
 
 end

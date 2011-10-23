@@ -1,0 +1,30 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :post
+    uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/densify
+    body: f=json&sr=3395&geometries=%7b%22geometryType%22%3a%22esriGeometryPolyline%22%2c%22geometries%22%3a%5b%7b%22paths%22%3a%5b%5b%5b-17313284.793%2c2209625.866%5d%2c%5b-17312808.186926104%2c2210504.3164105085%5d%2c%5b-17308518.732261017%2c2218410.3701050845%5d%2c%5b-17260185.82890302%2c2310809.9320710143%5d%2c%5b-17307752.671522036%2c2223194.8742101695%5d%2c%5b-14501308.957%2c7392483.288%5d%2c%5b-13773503.446%2c6003036.405%5d%5d%5d%7d%5d%7d&maxSegmentLength=10000000&geodesic=false
+    headers: 
+      content-type: 
+      - application/x-www-form-urlencoded
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain;charset=utf-8
+      date: 
+      - Sun, 23 Oct 2011 21:51:07 GMT
+      etag: 
+      - "-2077359628"
+      server: 
+      - Microsoft-IIS/7.0
+      x-powered-by: 
+      - ASP.NET
+      content-length: 
+      - "297"
+      connection: 
+      - keep-alive
+    body: "{\"geometryType\":\"esriGeometryPolyline\",\"geometries\":[{\"paths\":[[[-17313284.793,2209625.866],[-17312808.1869261,2210504.31641051],[-17308518.732261,2218410.37010508],[-17260185.828903,2310809.93207101],[-17307752.671522,2223194.87421017],[-14501308.957,7392483.288],[-13773503.446,6003036.405]]]}]}"
+    http_version: "1.1"

@@ -17,22 +17,28 @@ describe 'Point Geometry' do
   end
 
   it "should project a point from one spatial reference to another and return a new point" do
-    point = RGis::Point.new(15,17)
-    another_point = RGis::Point.new(1669792.3618991, 1920825.04037747)
-    point.project(:from => 4326, :to => 102100).should == another_point
-    another_point.project(:from => 102100, :to => 4326).should == point
+    VCR.use_cassette('point_project', :record => :new_episodes) do
+      point = RGis::Point.new(15,17)
+      another_point = RGis::Point.new(1669792.3618991, 1920825.04037747)
+      point.project(:from => 4326, :to => 102100).should == another_point
+      another_point.project(:from => 102100, :to => 4326).should == point
+    end
   end
   
   it "should change x and y atrributes from a point when reprojected" do
-    point = RGis::Point.new(15,17)
-    point.project!(:from => 4326, :to => 102100)
-    point.x.should == 1669792.3618991
-    point.y.should == 1920825.04037747
+    VCR.use_cassette('point_project_bang', :record => :new_episodes) do
+      point = RGis::Point.new(15,17)
+      point.project!(:from => 4326, :to => 102100)
+      point.x.should == 1669792.3618991
+      point.y.should == 1920825.04037747
+    end
   end
   
   it "should simplify a point" do
-    point = RGis::Point.new(15,17)
-    point.simplify(:spatial_reference => 4326).should == point
+    VCR.use_cassette('point_simplify', :record => :new_episodes) do
+      point = RGis::Point.new(15,17)
+      point.simplify(:spatial_reference => 4326).should == point
+    end
   end
     
 end
