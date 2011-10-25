@@ -66,4 +66,35 @@ describe 'Polyline Geometry' do
     end
   end
   
+  it "should calculate a buffer for a polyline" do
+    VCR.use_cassette('polyline_buffer', :record => :new_episodes) do
+      ring = RGis::Ring.new()
+      ring.points << RGis::Point.new(222638.983399998, 222684.2062)
+      ring.points << RGis::Point.new(222638.981899999, 222684.205499999)
+      ring.points << RGis::Point.new(222638.979899999, 222684.206099998)
+      ring.points << RGis::Point.new(222638.978700001, 222684.208000001)
+      ring.points << RGis::Point.new(222638.9791, 222684.210200001)
+      ring.points << RGis::Point.new(445277.9617, 445640.112300001)
+      ring.points << RGis::Point.new(445277.9637, 445640.112599999)
+      ring.points << RGis::Point.new(445277.965300001, 445640.1118)      
+      ring.points << RGis::Point.new(445277.9661, 445640.110199999)      
+      ring.points << RGis::Point.new(445277.965799998, 445640.108199999)      
+      ring.points << RGis::Point.new(222638.983399998, 222684.2062)                        
+      polygon = RGis::Polygon.new()
+      polygon.rings << ring
+      
+      path = RGis::Path.new()
+      path.points << RGis::Point.new(2,2) << RGis::Point.new(4,4)
+      polyline = RGis::Polyline.new()
+      polyline.paths << path
+
+      polyline.buffer( :input_spatial_reference => 4326,
+                    :output_spatial_reference => 102100,
+                    :buffer_spatial_reference => 102100,
+                    :distances => 0.01,
+                    :distance_units => RGis::Helper::UNIT_TYPES[:survey_foot],
+                    :union_results => true).should == polygon
+    end
+  end
+  
 end

@@ -77,4 +77,52 @@ describe 'Polygon Geometry' do
     end
   end
   
+  
+  it "should calculate a buffer for a polygon" do
+    VCR.use_cassette('polygon_buffer', :record => :new_episodes) do
+      ring = RGis::Ring.new()
+      ring.points << RGis::Point.new(2,2) << RGis::Point.new(4,4) << RGis::Point.new(6,6) << RGis::Point.new(2,2)
+      polygon = RGis::Polygon.new()
+      polygon.rings << ring
+      
+      
+      another_ring = RGis::Ring.new()
+      another_ring.points << RGis::Point.new(222638.981281747, 222684.208400744)
+      another_ring.points << RGis::Point.new(222638.981281747, 222684.208500744) 
+      another_ring.points << RGis::Point.new(222638.981281747, 222684.208600744) 
+      another_ring.points << RGis::Point.new(222638.981281747, 222684.208700744) 
+      another_ring.points << RGis::Point.new(222638.981381747, 222684.208700744) 
+      another_ring.points << RGis::Point.new(667916.944581747, 669141.057200744)
+      another_ring.points << RGis::Point.new(667916.944681747, 669141.057300744) 
+      another_ring.points << RGis::Point.new(667916.944781746, 669141.057300744) 
+      another_ring.points << RGis::Point.new(667916.944881747, 669141.057300744) 
+      another_ring.points << RGis::Point.new(667916.944981747, 669141.057300744) 
+      another_ring.points << RGis::Point.new(667916.944981747, 669141.057200744) 
+      another_ring.points << RGis::Point.new(667916.945081747, 669141.057200744) 
+      another_ring.points << RGis::Point.new(667916.945081747, 669141.057100744) 
+      another_ring.points << RGis::Point.new(667916.945081747, 669141.057000744) 
+      another_ring.points << RGis::Point.new(667916.945081747, 669141.056900744) 
+      another_ring.points << RGis::Point.new(667916.944981747, 669141.056800744) 
+      another_ring.points << RGis::Point.new(445277.963381747, 445640.109500744) 
+      another_ring.points << RGis::Point.new(222638.981781747, 222684.208300744) 
+      another_ring.points << RGis::Point.new(222638.981781747, 222684.208200744) 
+      another_ring.points << RGis::Point.new(222638.981681747, 222684.208200744) 
+      another_ring.points << RGis::Point.new(222638.981581747, 222684.208200744) 
+      another_ring.points << RGis::Point.new(222638.981481747, 222684.208200744) 
+      another_ring.points << RGis::Point.new(222638.981481747, 222684.208300744) 
+      another_ring.points << RGis::Point.new(222638.981381747, 222684.208300744) 
+      another_ring.points << RGis::Point.new(222638.981381747, 222684.208400744) 
+      another_ring.points << RGis::Point.new(222638.981281747, 222684.208400744)                        
+      another_polygon = RGis::Polygon.new()
+      another_polygon.rings << another_ring
+      
+      polygon.buffer( :input_spatial_reference => 4326,
+                      :output_spatial_reference => 102100,
+                      :buffer_spatial_reference => 102100,
+                      :distances => 0.001,
+                      :distance_units => RGis::Helper::UNIT_TYPES[:survey_foot],
+                      :union_results => false).should == another_polygon
+    end
+  end
+  
 end

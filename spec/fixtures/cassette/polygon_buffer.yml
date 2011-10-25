@@ -1,0 +1,30 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :post
+    uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/buffer
+    body: f=json&inSR=4326&outSR=102100&bufferSR=102100&distances=0.001&unit=9003&unionResults=false&geometries=%7b%22geometryType%22%3a%22esriGeometryPolygon%22%2c%22geometries%22%3a%5b%7b%22rings%22%3a%5b%5b%5b2.0%2c2.0%5d%2c%5b4.0%2c4.0%5d%2c%5b6.0%2c6.0%5d%2c%5b2.0%2c2.0%5d%5d%5d%7d%5d%7d
+    headers:
+      content-type:
+      - application/x-www-form-urlencoded
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - text/plain;charset=utf-8
+      date:
+      - Tue, 25 Oct 2011 23:54:28 GMT
+      etag:
+      - '-1471571446'
+      server:
+      - Microsoft-IIS/7.0
+      x-powered-by:
+      - ASP.NET
+      content-length:
+      - '966'
+      connection:
+      - keep-alive
+    body: ! '{"geometries":[{"rings":[[[222638.981281747,222684.208400744],[222638.981281747,222684.208500744],[222638.981281747,222684.208600744],[222638.981281747,222684.208700744],[222638.981381747,222684.208700744],[667916.944581747,669141.057200744],[667916.944681747,669141.057300744],[667916.944781746,669141.057300744],[667916.944881747,669141.057300744],[667916.944981747,669141.057300744],[667916.944981747,669141.057200744],[667916.945081747,669141.057200744],[667916.945081747,669141.057100744],[667916.945081747,669141.057000744],[667916.945081747,669141.056900744],[667916.944981747,669141.056800744],[445277.963381747,445640.109500744],[222638.981781747,222684.208300744],[222638.981781747,222684.208200744],[222638.981681747,222684.208200744],[222638.981581747,222684.208200744],[222638.981481747,222684.208200744],[222638.981481747,222684.208300744],[222638.981381747,222684.208300744],[222638.981381747,222684.208400744],[222638.981281747,222684.208400744]]]}]}'
+    http_version: '1.1'
