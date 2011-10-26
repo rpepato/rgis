@@ -125,4 +125,35 @@ describe 'Polygon Geometry' do
     end
   end
   
+  it "should calculate area and perimter for a polygon" do
+    VCR.use_cassette('polygon_area_and_perimeter', :record => :new_episodes) do    
+      ring = RGis::Ring.new()
+
+      ring.points << RGis::Point.new(-628833.344099998,206205.236200001)
+      ring.points << RGis::Point.new(-630269.659900002,192298.906100001)
+      ring.points << RGis::Point.new(-631848.233800001,173991.394400001)
+      ring.points << RGis::Point.new(-616471.690300003,341822.557500001)
+      ring.points << RGis::Point.new(-620213.661300004,301450.162799999)
+      ring.points << RGis::Point.new(-625923.431999996,237538.0579)     
+      ring.points << RGis::Point.new(-628833.344099998,206205.236200001) 
+
+      polygon = RGis::Polygon.new()
+      polygon.rings << ring
+
+
+      area_and_perimeter = polygon.area_and_perimeter( :spatial_reference => 102009, 
+      :length_unit => RGis::Helper::UNIT_TYPES[:survey_mile],
+      :area_unit =>  RGis::Helper::AREA_UNIT_TYPES[:acres])    
+      area_and_perimeter[:area].should =~ [615.362788718949]
+      area_and_perimeter[:perimeter].should =~ [209.444905018474]
+    end    
+  end
+  
+  it "should raise an exception when area_and_perimeter method is called" do
+    VCR.use_cassette('polyline_area_and_perimeter', :record => :new_episodes) do
+      polyline = RGis::Polyline.new()
+      lambda{polyline.area_and_perimeter(nil)}.should raise_error(TypeError, "Area and perimeter operation is allowed only for polygon types")
+    end
+  end  
+  
 end

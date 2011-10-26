@@ -25,6 +25,12 @@ module RGis
         response = buffer_geometry(params)
         parse_result(response)
       end
+      
+      def area_and_perimeter(params = {})
+        raise TypeError, "Area and perimeter operation is allowed only for polygon type" unless self.is_a?(Polygon)
+        response = area_and_perimeter_for_geometry(params)
+        {:area => response[:areas], :perimeter => response[:lengths]}
+      end
                   
       private
       
@@ -111,6 +117,30 @@ module RGis
         request.geometries = self.to_json
         response = Lookup.post("#{RGis::Services::ServiceDirectory.geometry_service_uri}/buffer", request)
         response
+      end
+      
+      def area_and_perimeter_for_geometry(params = {})
+        request = Request.new
+        request.f = 'json'
+        request.sr = params[:spatial_reference]
+        request.lengthUnit = params[:length_unit]
+        request.areaUnit = JSON.unparse({:areaUnit => params[:area_unit]})
+        rings = []
+        self.rings.each do |ring|
+          r = []
+          ring.points.each do |point|
+            r << [point.x, point.y]
+          end
+          rings << r
+        end
+        polygons = [
+          {
+            :rings => rings
+          }
+          ]
+        request.polygons = JSON.unparse(polygons)
+        response = Lookup.post("#{RGis::Services::ServiceDirectory.geometry_service_uri}/areasAndLengths", request)
+        response        
       end
 
     end

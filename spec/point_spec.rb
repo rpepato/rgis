@@ -63,6 +63,13 @@ describe 'Point Geometry' do
                     :union_results => false).should == polygon
     end
   end
+  
+  it "should raise an exception when area_and_perimeter method is called" do
+    VCR.use_cassette('point_area_and_perimeter', :record => :new_episodes) do
+      point = RGis::Point.new(15,17)
+      lambda{point.area_and_perimeter(nil)}.should raise_error(TypeError, "Area and perimeter operation is allowed only for polygon types")
+    end
+  end
 
 end
 
