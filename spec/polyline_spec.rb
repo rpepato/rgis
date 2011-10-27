@@ -97,4 +97,11 @@ describe 'Polyline Geometry' do
     end
   end
   
+  it "should raise an exception when area_and_perimeter method is called" do
+    VCR.use_cassette('polyline_area_and_perimeter', :record => :new_episodes) do
+      polyline = RGis::Polyline.new()
+      lambda{polyline.area_and_perimeter(nil)}.should raise_error(TypeError, "Area and perimeter operation is allowed only for polygon type")
+    end
+  end
+  
 end
