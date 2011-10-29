@@ -3,7 +3,9 @@ require 'spec_helper'
 describe "Lookup details from arcgis rest directory services" do
   
   before (:each) do
-    @gs = RGis::GeometryService.new('http://sampleserver1.arcgisonline.com/ArcGIS/rest/services')
+    VCR.use_cassette('geometry_service', :record => :new_episodes) do
+      @gs = RGis::GeometryService.new('http://sampleserver1.arcgisonline.com/ArcGIS/rest/services')
+    end
   end
 
   it "should initialize a geometry service from a uri" do
@@ -11,13 +13,17 @@ describe "Lookup details from arcgis rest directory services" do
   end
 
   it "should initialize a geometry service from a uri with slash in the end of service name" do
-    gs = RGis::GeometryService.new('http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/')
-    gs.uri.should == 'http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer'
+    VCR.use_cassette('geometry_service_with_slash', :record => :new_episodes) do
+      gs = RGis::GeometryService.new('http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/')
+      gs.uri.should == 'http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer'
+    end
   end
 
   it "should reproject a point from 4326 SR to 102113" do
-    @gs.project(4326, 102113, :point => [19.109209, 34.1928918184256]).geometries.should =~ [{'x' => 2127227.41534224, 'y' => 4054732.18582985}]
-    @gs.project(4326, 102113, :point => [[19.109209, 34.1928918184256]]).geometries.should =~ [{'x' => 2127227.41534224, 'y' => 4054732.18582985}]
+    VCR.use_cassette('geometry_service_project', :record => :new_episodes) do
+      @gs.project(4326, 102113, :point => [19.109209, 34.1928918184256]).geometries.should =~ [{'x' => 2127227.41534224, 'y' => 4054732.18582985}]
+      @gs.project(4326, 102113, :point => [[19.109209, 34.1928918184256]]).geometries.should =~ [{'x' => 2127227.41534224, 'y' => 4054732.18582985}]
+    end
   end
   
   it "should simplify geometries in 4326 projection" do                                           
@@ -28,7 +34,9 @@ describe "Lookup details from arcgis rest directory services" do
           {:x => -63.53, :y => 10.23}
           ]
       }
-    @gs.simplify(4326, geometry).geometries.should =~ [{'x' => -104.53, 'y' => 34.74}, {'x' => -63.53, 'y' => 10.23}]
+      VCR.use_cassette('geometry_service_simplify', :record => :new_episodes) do
+        @gs.simplify(4326, geometry).geometries.should =~ [{'x' => -104.53, 'y' => 34.74}, {'x' => -63.53, 'y' => 10.23}]
+      end
   end
   
   it "should perform a buffer around a simple geometry" do
@@ -111,7 +119,9 @@ describe "Lookup details from arcgis rest directory services" do
          }
        ]
             
-     @gs.buffer(4326, geometry, params).geometries.should =~ returned_polygons
+       VCR.use_cassette('geometry_service_buffer', :record => :new_episodes) do
+         @gs.buffer(4326, geometry, params).geometries.should =~ returned_polygons
+       end
   end                                                                    
   
   it "should calculate area and length from a polygon" do
@@ -140,9 +150,11 @@ describe "Lookup details from arcgis rest directory services" do
        :area_unit => {:areaUnit => RGis::Helper::AREA_UNIT_TYPES[:acres]}
      }
      
-     response = @gs.length_and_area(102009, polygons, params)
-     response.areas.should =~ returned_areas
-     response.lengths.should =~ returned_lengths
+     VCR.use_cassette('geometry_service_length_and_area', :record => :new_episodes) do
+       response = @gs.length_and_area(102009, polygons, params)
+       response.areas.should =~ returned_areas
+       response.lengths.should =~ returned_lengths
+     end
      
   end                                    
   
@@ -166,7 +178,9 @@ describe "Lookup details from arcgis rest directory services" do
        :geodesic => true       
      }                                                 
      
-     @gs.lengths(4269, polylines, params).lengths.should =~ [456.036465954783, 277.294288451794]
+     VCR.use_cassette('geometry_service_lengths', :record => :new_episodes) do
+       @gs.lengths(4269, polylines, params).lengths.should =~ [456.036465954783, 277.294288451794]
+     end
      
   end  
   
@@ -189,7 +203,9 @@ describe "Lookup details from arcgis rest directory services" do
         :length_unit => RGis::Helper::UNIT_TYPES[:kilometer],
       }                                                 
 
-      @gs.lengths(4269, polylines, params).lengths.should =~ [8.4271951019424E-05, 4.52245385166335E-05]
+      VCR.use_cassette('geometry_service_lengths_without_geodesic', :record => :new_episodes) do
+        @gs.lengths(4269, polylines, params).lengths.should =~ [8.4271951019424E-05, 4.52245385166335E-05]
+      end
 
    end
 
@@ -204,7 +220,9 @@ describe "Lookup details from arcgis rest directory services" do
        }
      ]     
      
-     @gs.label_points(4326, polygons).labelPoints.should =~ [{'x' => -104.5, 'y' => 34.5000000000001}]
+    VCR.use_cassette('geometry_service_label_points', :record => :new_episodes) do
+      @gs.label_points(4326, polygons).labelPoints.should =~ [{'x' => -104.5, 'y' => 34.5000000000001}]
+    end
      
   end
   
@@ -240,7 +258,9 @@ describe "Lookup details from arcgis rest directory services" do
      :relation_param => nil         
     }         
        
-    @gs.relation(4326, geometry, related_geometry, params).relations.should =~ [{'geometry1Index' => 0, 'geometry2Index' => 0  }]
+    VCR.use_cassette('geometry_service_relation', :record => :new_episodes) do
+      @gs.relation(4326, geometry, related_geometry, params).relations.should =~ [{'geometry1Index' => 0, 'geometry2Index' => 0  }]
+    end
   end  
   
   it "should perform densify on geometries" do
@@ -288,7 +308,9 @@ describe "Lookup details from arcgis rest directory services" do
       }
     ]
     
-    @gs.densify(3395, geometry, params).geometries.should =~ geometries_returned
+    VCR.use_cassette('geometry_service_densify', :record => :new_episodes) do
+      @gs.densify(3395, geometry, params).geometries.should =~ geometries_returned
+    end
   end
   
   it "should calculate distance between geometries" do
@@ -318,7 +340,9 @@ describe "Lookup details from arcgis rest directory services" do
       :geodesic => true 
     }
     
-    @gs.distance(4326, first_geometry, second_geometry, params).distance.should == 5840.30963758173
+    VCR.use_cassette('geometry_service_distance', :record => :new_episodes) do
+      @gs.distance(4326, first_geometry, second_geometry, params).distance.should == 5840.30963758173
+    end
   end
   
 end

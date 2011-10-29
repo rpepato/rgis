@@ -1,0 +1,30 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :post
+    uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/project
+    body: f=json&inSR=4326&outSR=102100&geometries=%7b%22geometryType%22%3a%22esriGeometryPolyline%22%2c%22geometries%22%3a%5b%7b%22paths%22%3a%5b%5b%5b2.0%2c2.0%5d%2c%5b4.0%2c4.0%5d%5d%5d%7d%5d%7d
+    headers: 
+      content-type: 
+      - application/x-www-form-urlencoded
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain;charset=utf-8
+      date: 
+      - Sun, 23 Oct 2011 21:51:12 GMT
+      etag: 
+      - "-499675912"
+      server: 
+      - Microsoft-IIS/7.0
+      x-powered-by: 
+      - ASP.NET
+      content-length: 
+      - "140"
+      connection: 
+      - keep-alive
+    body: "{\"geometryType\":\"esriGeometryPolyline\",\"geometries\":[{\"paths\":[[[222638.981586547,222684.208505545],[445277.963173094,445640.109656027]]]}]}"
+    http_version: "1.1"

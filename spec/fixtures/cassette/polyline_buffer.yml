@@ -1,0 +1,30 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :post
+    uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/buffer
+    body: f=json&inSR=4326&outSR=102100&bufferSR=102100&distances=0.01&unit=9003&unionResults=true&geometries=%7b%22geometryType%22%3a%22esriGeometryPolyline%22%2c%22geometries%22%3a%5b%7b%22paths%22%3a%5b%5b%5b2.0%2c2.0%5d%2c%5b4.0%2c4.0%5d%5d%5d%7d%5d%7d
+    headers:
+      content-type:
+      - application/x-www-form-urlencoded
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - text/plain;charset=utf-8
+      date:
+      - Tue, 25 Oct 2011 23:33:39 GMT
+      etag:
+      - '-1874520462'
+      server:
+      - Microsoft-IIS/7.0
+      x-powered-by:
+      - ASP.NET
+      content-length:
+      - '391'
+      connection:
+      - keep-alive
+    body: ! '{"geometries":[{"rings":[[[222638.983399998,222684.2062],[222638.981899999,222684.205499999],[222638.979899999,222684.206099998],[222638.978700001,222684.208000001],[222638.9791,222684.210200001],[445277.9617,445640.112300001],[445277.9637,445640.112599999],[445277.965300001,445640.1118],[445277.9661,445640.110199999],[445277.965799998,445640.108199999],[222638.983399998,222684.2062]]]}]}'
+    http_version: '1.1'

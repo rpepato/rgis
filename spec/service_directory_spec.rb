@@ -12,7 +12,9 @@ describe 'Singleton Service' do
 
   it "should obtain the correct geometry service address" do
     RGis::Services::ServiceDirectory.uri = "http://sampleserver1.arcgisonline.com/ArcGIS/rest/services"
-    RGis::Services::ServiceDirectory.geometry_service_uri.should == "http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer"
+    VCR.use_cassette('geometry_service_uri', :record => :new_episodes) do
+      RGis::Services::ServiceDirectory.geometry_service_uri.should == "http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer"
+    end
   end
 
 end

@@ -1,0 +1,30 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :post
+    uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/simplify
+    body: f=json&sr=4326&geometries=%7b%22geometryType%22%3a%22esriGeometryPolygon%22%2c%22geometries%22%3a%5b%7b%22rings%22%3a%5b%5b%5b2.0%2c0.0%5d%2c%5b6.0%2c0.0%5d%2c%5b6.0%2c4.0%5d%2c%5b3.0%2c4.3%5d%2c%5b2.0%2c4.0%5d%2c%5b2.0%2c0.0%5d%5d%5d%7d%5d%7d
+    headers: 
+      content-type: 
+      - application/x-www-form-urlencoded
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain;charset=utf-8
+      date: 
+      - Sun, 23 Oct 2011 21:51:12 GMT
+      etag: 
+      - "744466881"
+      server: 
+      - Microsoft-IIS/7.0
+      x-powered-by: 
+      - ASP.NET
+      content-length: 
+      - "292"
+      connection: 
+      - keep-alive
+    body: "{\"geometryType\":\"esriGeometryPolygon\",\"geometries\":[{\"rings\":[[[6.00000000000006,5.6843418860808E-14],[2.00000000000006,5.6843418860808E-14],[2.00000000000006,4.00000000000006],[3.00000000000006,4.30000000000007],[6.00000000000006,4.00000000000006],[6.00000000000006,5.6843418860808E-14]]]}]}"
+    http_version: "1.1"

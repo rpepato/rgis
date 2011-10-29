@@ -1,0 +1,30 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :post
+    uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/distance
+    body: f=json&sr=4326&geometry1=%7b%22geometryType%22%3a%22esriGeometryPoint%22%2c%22geometry%22%3a%7b%22x%22%3a-117.47697998046874%2c%22y%22%3a34.121858211839566%2c%22spatialReference%22%3a%7b%22wkid%22%3a4326%7d%7d%7d&geometry2=%7b%22geometryType%22%3a%22esriGeometryPoint%22%2c%22geometry%22%3a%7b%22x%22%3a-117.41586853027343%2c%22y%22%3a34.108125301683316%2c%22spatialReference%22%3a%7b%22wkid%22%3a4326%7d%7d%7d&distanceUnit=9001&geodesic=true
+    headers: 
+      content-type: 
+      - application/x-www-form-urlencoded
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain;charset=utf-8
+      date: 
+      - Sun, 23 Oct 2011 21:51:07 GMT
+      etag: 
+      - "-1171533203"
+      server: 
+      - Microsoft-IIS/7.0
+      x-powered-by: 
+      - ASP.NET
+      content-length: 
+      - "29"
+      connection: 
+      - keep-alive
+    body: "{\"distance\":5840.30963758173}"
+    http_version: "1.1"
