@@ -6,7 +6,7 @@
 
 This project has the intention to expose in an easy and flexible way a great amount of the ArcGIS server rest capabilities, giving developer access to geometry projection, tiled and dynamic layers, geocoding and much more.
 It's still a work in progress (just starting actually), so a lot of code is yet to be written, and any help is welcome.
-The team can guarantee the GIS side, but be gentle with us in the Ruby side.
+The team can guarantee the GIS side, but be gentle with us in the Ruby side. :)
 
 
 == Contributing to rgis
@@ -21,6 +21,5 @@ The team can guarantee the GIS side, but be gentle with us in the Ruby side.
 
 == Copyright
 
-Copyright (c) 2011 pepato. See LICENSE.txt for
-further details.
+Copyright (c) 2011 Rgis. See LICENSE.txt for further details.
 
