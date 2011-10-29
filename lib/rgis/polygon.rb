@@ -20,6 +20,27 @@ module RGis
       JSON.unparse(to_hash)
     end
     
+    def rings_to_json
+      
+      raw_data_rings = []
+      @rings.each do |ring|
+        r = []
+        ring.points.each do |point|
+          r << [point.x, point.y]
+        end
+        raw_data_rings << r
+      end
+      
+      geometry_rings = []
+      raw_data_rings.each do |r|
+        geometry_rings << {:rings => r}
+      end
+
+      
+      JSON.unparse(geometry_rings)
+      
+    end
+    
     
     private 
 

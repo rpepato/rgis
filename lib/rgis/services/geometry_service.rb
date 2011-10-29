@@ -138,7 +138,7 @@ module RGis
             :rings => rings
           }
           ]
-        request.polygons = JSON.unparse(polygons)
+        request.polygons = self.rings_to_json
         response = Lookup.post("#{RGis::Services::ServiceDirectory.geometry_service_uri}/areasAndLengths", request)
         response        
       end
