@@ -27,6 +27,11 @@ describe 'Ring Equality and Validation' do
     ring.points << RGis::Point.new(0,0) << RGis::Point.new(1,1) << RGis::Point.new(2,2) << RGis::Point.new(3,3)
     ring.should_not be_valid    
   end
-
+  
+  it "should return raw data for ring" do
+    ring = RGis::Ring.new()
+    ring.points << RGis::Point.new(2,4) << RGis::Point.new(4,8)
+    ring.raw_data.should =~ [[2,4],[4,8]]
+  end
   
 end
