@@ -13,7 +13,7 @@
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Wed, 02 Nov 2011 14:13:41 GMT
+      - Wed, 02 Nov 2011 14:53:15 GMT
       etag:
       - '1139058324'
       server:
@@ -30,7 +30,7 @@
   request: !ruby/struct:VCR::Request
     method: :post
     uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/project
-    body: f=json&inSR=4326&outSR=102100&geometries=%7b%22geometryType%22%3a%22esriGeometryPoint%22%2c%22geometries%22%3a%5b%7b%22x%22%3a15.0%2c%22y%22%3a17.0%7d%5d%7d
+    body: f=json&inSR=4326&outSR=102113&geometries=%7b%22geometryType%22%3a%22esriGeometryPoint%22%2c%22geometries%22%3a%5b%7b%22x%22%3a-104.53%2c%22y%22%3a34.74%7d%5d%7d
     headers:
       content-type:
       - application/x-www-form-urlencoded
@@ -42,24 +42,24 @@
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Wed, 02 Nov 2011 14:13:41 GMT
+      - Wed, 02 Nov 2011 14:53:15 GMT
       etag:
-      - '565492543'
+      - '385305046'
       server:
       - Microsoft-IIS/7.0
       x-powered-by:
       - ASP.NET
       content-length:
-      - '94'
+      - '96'
       connection:
       - keep-alive
-    body: ! '{"geometryType":"esriGeometryPoint","geometries":[{"x":1669792.3618991,"y":1920825.04037747}]}'
+    body: ! '{"geometryType":"esriGeometryPoint","geometries":[{"x":-11636226.3726209,"y":4128604.07739995}]}'
     http_version: '1.1'
 - !ruby/struct:VCR::HTTPInteraction
   request: !ruby/struct:VCR::Request
     method: :post
     uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/project
-    body: f=json&inSR=102100&outSR=4326&geometries=%7b%22geometryType%22%3a%22esriGeometryPoint%22%2c%22geometries%22%3a%5b%7b%22x%22%3a1669792.3618991%2c%22y%22%3a1920825.04037747%7d%5d%7d
+    body: f=json&inSR=102113&outSR=4326&geometries=%7b%22geometryType%22%3a%22esriGeometryPoint%22%2c%22geometries%22%3a%5b%7b%22x%22%3a-11636226.3726209%2c%22y%22%3a4128604.07739995%7d%5d%7d
     headers:
       content-type:
       - application/x-www-form-urlencoded
@@ -71,16 +71,16 @@
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Wed, 02 Nov 2011 14:13:43 GMT
+      - Wed, 02 Nov 2011 14:53:16 GMT
       etag:
-      - '-443839796'
+      - '-1438888313'
       server:
       - Microsoft-IIS/7.0
       x-powered-by:
       - ASP.NET
       content-length:
-      - '67'
+      - '75'
       connection:
       - keep-alive
-    body: ! '{"geometryType":"esriGeometryPoint","geometries":[{"x":15,"y":17}]}'
+    body: ! '{"geometryType":"esriGeometryPoint","geometries":[{"x":-104.53,"y":34.74}]}'
     http_version: '1.1'

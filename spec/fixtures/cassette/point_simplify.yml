@@ -3,7 +3,7 @@
   request: !ruby/struct:VCR::Request
     method: :post
     uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/simplify
-    body: f=json&sr=4326&geometries=%7b%22geometryType%22%3a%22esriGeometryPoint%22%2c%22geometries%22%3a%5b%7b%22x%22%3a15.0%2c%22y%22%3a17.0%7d%5d%7d
+    body: f=json&sr=4326&geometries=%7b%22geometryType%22%3a%22esriGeometryPoint%22%2c%22geometries%22%3a%5b%7b%22x%22%3a-104.53%2c%22y%22%3a34.74%7d%5d%7d
     headers:
       content-type:
       - application/x-www-form-urlencoded
@@ -15,16 +15,16 @@
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Wed, 02 Nov 2011 14:13:43 GMT
+      - Wed, 02 Nov 2011 14:53:16 GMT
       etag:
-      - '985769532'
+      - '1386974273'
       server:
       - Microsoft-IIS/7.0
       x-powered-by:
       - ASP.NET
       content-length:
-      - '67'
+      - '75'
       connection:
       - keep-alive
-    body: ! '{"geometryType":"esriGeometryPoint","geometries":[{"x":15,"y":17}]}'
+    body: ! '{"geometryType":"esriGeometryPoint","geometries":[{"x":-104.53,"y":34.74}]}'
     http_version: '1.1'
