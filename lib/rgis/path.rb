@@ -14,5 +14,9 @@ module RGis
       @points.count > 1
     end
     
+    def to_array
+      @points.collect { |p| [p.x, p.y] }
+    end    
+    
   end
 end

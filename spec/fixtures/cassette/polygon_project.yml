@@ -15,7 +15,7 @@
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Sun, 23 Oct 2011 21:51:11 GMT
+      - Wed, 02 Nov 2011 14:13:44 GMT
       etag:
       - '2070944168'
       server:
@@ -27,31 +27,4 @@
       connection:
       - keep-alive
     body: ! '{"geometryType":"esriGeometryPolygon","geometries":[{"rings":[[[222638.981586547,222684.208505545],[445277.963173094,445640.109656027],[667916.944759641,669141.057044245],[222638.981586547,222684.208505545]]]}]}'
-    http_version: '1.1'
-- !ruby/struct:VCR::HTTPInteraction
-  request: !ruby/struct:VCR::Request
-    method: :get
-    uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services?f=json
-    body: !!null 
-    headers: !!null 
-  response: !ruby/struct:VCR::Response
-    status: !ruby/struct:VCR::ResponseStatus
-      code: 200
-      message: OK
-    headers:
-      content-type:
-      - text/plain;charset=utf-8
-      date:
-      - Wed, 26 Oct 2011 22:50:44 GMT
-      etag:
-      - '1139058324'
-      server:
-      - Microsoft-IIS/7.0
-      x-powered-by:
-      - ASP.NET
-      content-length:
-      - '221'
-      connection:
-      - keep-alive
-    body: ! '{"currentVersion":10.01,"folders":["Demographics","Elevation","Locators","Louisville","Network","Petroleum","PublicSafety","Specialty","TaxParcel","WaterTemplate"],"services":[{"name":"Geometry","type":"GeometryServer"}]}'
     http_version: '1.1'

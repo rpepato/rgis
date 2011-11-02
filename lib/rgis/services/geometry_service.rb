@@ -48,9 +48,7 @@ module RGis
           polygon = RGis::Polygon.new()
           response.geometries[0].rings.each do |ring|
             r = RGis::Ring.new()
-            ring.each do |point|
-              r.points << Point.new(point[0], point[1])
-            end
+            r.points = ring.collect { |point| Point.new(point[0], point[1])}
             polygon.rings << r
           end
           polygon
@@ -58,9 +56,7 @@ module RGis
           polyline = RGis::Polyline.new()
           response.geometries[0].paths.each do |path|
             p = RGis::Path.new()
-            path.each do |point|
-              p.points << Point.new(point[0],point[1])
-            end
+            p.points = path.collect { |point| Point.new(point[0], point[1])}
             polyline.paths << p
           end
           polyline
@@ -125,19 +121,6 @@ module RGis
         request.sr = params[:spatial_reference]
         request.lengthUnit = params[:length_unit]
         request.areaUnit = JSON.unparse({:areaUnit => params[:area_unit]})
-        rings = []
-        self.rings.each do |ring|
-          r = []
-          ring.points.each do |point|
-            r << [point.x, point.y]
-          end
-          rings << r
-        end
-        polygons = [
-          {
-            :rings => rings
-          }
-          ]
         request.polygons = self.rings_to_json
         response = Lookup.post("#{RGis::Services::ServiceDirectory.geometry_service_uri}/areasAndLengths", request)
         response        

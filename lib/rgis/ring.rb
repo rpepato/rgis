@@ -14,8 +14,8 @@ module RGis
       @points.count > 3 && @points.first == @points.last
     end
     
-    def raw_data
-      @points.collect { |p| [p.x, p.y]}
+    def to_array
+      @points.collect { |p| [p.x, p.y] }
     end
     
   end

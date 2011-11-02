@@ -1,5 +1,4 @@
 require 'rgis/lookup'
-require 'rgis/geometry_service'
 require 'net/http'
 
 module RGis  

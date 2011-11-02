@@ -4,7 +4,6 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'rspec'
 require 'vcr'
 require 'rgis'
-require 'rgis/geometry_service'
 require 'rgis/point'
 require 'rgis/polygon'
 require 'rgis/polyline'

@@ -31,7 +31,7 @@ describe 'Ring Equality and Validation' do
   it "should return raw data for ring" do
     ring = RGis::Ring.new()
     ring.points << RGis::Point.new(2,4) << RGis::Point.new(4,8)
-    ring.raw_data.should =~ [[2,4],[4,8]]
+    ring.to_array.should =~ [[2,4],[4,8]]
   end
   
 end

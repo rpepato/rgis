@@ -20,13 +20,17 @@ module RGis
     def to_json
       JSON.unparse(to_hash)
     end
+    
+    def to_array
+      [{:x => @x, :y => @y}]
+    end
 
     private 
 
     def to_hash
       request = Request.new
       request.geometryType = RGis::Helper::GEOMETRY_TYPES[:point]
-      request.geometries = [{:x => @x, :y => @y}]     
+      request.geometries = to_array
       request
     end  
     

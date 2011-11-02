@@ -21,19 +21,19 @@ module RGis
     end
     
     def rings_to_json
-      JSON.unparse(rings_to_raw_data)      
+      JSON.unparse(rings_to_array)      
     end
     
     private 
     
-    def rings_to_raw_data
-      rings.collect { |r| {:rings => r.raw_data} }
+    def rings_to_array
+      rings.collect { |r| {:rings => [r.to_array]} }
     end
 
     def to_hash
       request = Request.new
       request.geometryType = RGis::Helper::GEOMETRY_TYPES[:polygon]
-      request.geometries = rings.collect { |r| {:rings => [r.raw_data]} }     
+      request.geometries = rings_to_array     
       request
     end
   end  

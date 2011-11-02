@@ -20,20 +20,20 @@ module RGis
       JSON.unparse(to_hash)
     end
     
+    def paths_to_json
+      JSON.unparse(paths_to_array)
+    end
+    
     private
+    
+    def paths_to_array
+      paths.collect { |p| {:paths => [p.to_array]} }
+    end
     
     def to_hash
       request = Request.new
       request.geometryType = RGis::Helper::GEOMETRY_TYPES[:polyline]
-      geometries = []
-      @paths.each do |path|
-        p = []
-        path.points.each do |point|
-          p << [point.x, point.y]
-        end
-        geometries << p
-      end
-      request.geometries = [{:paths => geometries}]
+      request.geometries = paths_to_array
       request
     end
     
