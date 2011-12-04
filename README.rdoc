@@ -8,9 +8,75 @@ This project has the intention to expose in an easy and flexible way a great amo
 It's still a work in progress (just starting actually), so a lot of code is yet to be written, and any help is welcome.
 The team can guarantee the GIS side, but be gentle with us in the Ruby side. :)
 
+== Current State
+
+The rgis project is in current development. In fact, the work here just started. We are working to finish the first module of the system which will provide a way to access the esri geometry services in ruby. After that we'll continue to improve the project adding support to other services: Feature Service, Map Service, GP Service, Geocode Service, Image Service, Network Service, Geodata Service, Globe Service and Mobile Service.
+
+== How to use rgis
+
+We didn't finished rgis v1 yet so you'll need to wait a bit more to install it via rubygems :(
+But, if you're an early adopter, don't worry! Here goes what you need to make rgis works in your environment:
+
+* Clone the repo: git clone git://github.com/rgis/rgis.git
+* Run bundle install
+* Run the specs to make sure that everything is ok: rspec /spec
+
+== RGis Types
+
+Currently, the rgis library is comprised of 5 types, 3 of them you'll use to directly manipulate the geometries and another 2 types to indirectly support the manipulation of Polygons and Polylines.
+
+It is important that before any call to a geometry service you set up the location of your arcgis server where your esri rest api is published, by using the ServiceDirectory class. If you don't have access to a private arcgis server, you can use esri's sample server to develop and test your code:
+
+  RGis::Services::ServiceDirectory.uri = "http://sampleserver1.arcgisonline.com/ArcGIS/rest/services"
+
+=== Point
+
+Using a point is straightforward. Just create an instance by passing the x and y coordinates:
+
+@point = RGis::Point.new(-104.53, 34.74)
+
+You can set the x and y coordinates after the instance is created, as you like:
+
+@point.x = -46.375645
+
+Once a point instance is created you can call geometry services directly in this instance. For example, to project a point from the spatial reference 4326 to spatial reference 102113 you can do this:
+
+@projected_point = @point.project(:from => 4326, :to => 102113)
+
+=== Polyline
+
+A polyline is the representation of a geometry composed for one or more paths. In rgis, a path object is comprised of a collection of points. Similarly, a polyline is comprised of a collection of paths. Let's see how this works:
+
+    @polyline = RGis::Polyline.new()
+    @path = RGis::Path.new()
+    @path.points << RGis::Point.new(1,3) << RGis::Point.new(4,7) << ::RGis::Point.new(6,8)
+    @polyline.paths << @path
+
+The geometry operations on polylines work exactly the same way it works on point:
+
+@projected_polyline = @polyline.project(:from => 4326, :to => 102113)
+
+=== Polygon
+
+The polygon geometry type works the same way a polyline works. In fact, a polygon can be understood as a closed polyline (when the first point is exactly the last point of each path, with each path containing 4 or more points). The analog of a Path is a Ring. A Ring is comprised of a collection of points and a Polygon is comprised of a collection of Rings:
+
+    @ring = RGis::Ring.new()
+    @ring.points << RGis::Point.new(2,2) << RGis::Point.new(4,4) << RGis::Point.new(6,6) << RGis::Point.new(2,2)
+    @polygon = RGis::Polygon.new()
+    @polygon.rings << ring
+
+The geometry operations on polygons work as previously shown for point and polyline:
+
+@projected_polygon = @polygon.projetc(:from => 4326, :to => 102113)
 
 == Contributing to rgis
- 
+
+* This project relates to provide an API over the esri rest api to access features related to GIS systems so if you have any skills in these areas it will help you to understand the overall picture. However, if you're new to GIS concepts an ESRI API but wan't to contribute to the project, we'd like to provide some links to help you understand what we are doing here. It's is recommended that you take a look at the following resources:
+  * What is GIS:
+    http://en.wikipedia.org/wiki/Geographic_information_system
+    http://www.esri.com/what-is-gis/index.html
+  * Esri Rest Api:
+    http://resources.esri.com/help/9.3/arcgisserver/apis/rest/
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
 * Fork the project
@@ -18,6 +84,7 @@ The team can guarantee the GIS side, but be gentle with us in the Ruby side. :)
 * Commit and push until you are happy with your contribution
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+* Can't find an answer for your questions ? Join the contributors mail list: rgis-contrib@googlegroups.com
 
 == Copyright
 
