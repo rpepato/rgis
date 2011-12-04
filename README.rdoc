@@ -33,11 +33,11 @@ It is important that before any call to a geometry service you set up the locati
 
 Using a point is straightforward. Just create an instance by passing the x and y coordinates:
 
-@point = RGis::Point.new(-104.53, 34.74)
+    @point = RGis::Point.new(-104.53, 34.74)
 
 You can set the x and y coordinates after the instance is created, as you like:
 
-@point.x = -46.375645
+    @point.x = -46.375645
 
 Once a point instance is created you can call geometry services directly in this instance. For example, to project a point from the spatial reference 4326 to spatial reference 102113 you can do this:
 
@@ -67,7 +67,7 @@ The polygon geometry type works the same way a polyline works. In fact, a polygo
 
 The geometry operations on polygons work as previously shown for point and polyline:
 
-    @projected_polygon = @polygon.projetc(:from => 4326, :to => 102113)
+    @projected_polygon = @polygon.project(:from => 4326, :to => 102113)
 
 == Contributing to rgis
 
