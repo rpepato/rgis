@@ -41,7 +41,7 @@ You can set the x and y coordinates after the instance is created, as you like:
 
 Once a point instance is created you can call geometry services directly in this instance. For example, to project a point from the spatial reference 4326 to spatial reference 102113 you can do this:
 
-@projected_point = @point.project(:from => 4326, :to => 102113)
+    @projected_point = @point.project(:from => 4326, :to => 102113)
 
 === Polyline
 
@@ -54,7 +54,7 @@ A polyline is the representation of a geometry composed for one or more paths. I
 
 The geometry operations on polylines work exactly the same way it works on point:
 
-@projected_polyline = @polyline.project(:from => 4326, :to => 102113)
+    @projected_polyline = @polyline.project(:from => 4326, :to => 102113)
 
 === Polygon
 
@@ -67,16 +67,16 @@ The polygon geometry type works the same way a polyline works. In fact, a polygo
 
 The geometry operations on polygons work as previously shown for point and polyline:
 
-@projected_polygon = @polygon.projetc(:from => 4326, :to => 102113)
+    @projected_polygon = @polygon.projetc(:from => 4326, :to => 102113)
 
 == Contributing to rgis
 
 * This project relates to provide an API over the esri rest api to access features related to GIS systems so if you have any skills in these areas it will help you to understand the overall picture. However, if you're new to GIS concepts an ESRI API but wan't to contribute to the project, we'd like to provide some links to help you understand what we are doing here. It's is recommended that you take a look at the following resources:
   * What is GIS:
-    http://en.wikipedia.org/wiki/Geographic_information_system
-    http://www.esri.com/what-is-gis/index.html
+    * http://en.wikipedia.org/wiki/Geographic_information_system
+    * http://www.esri.com/what-is-gis/index.html
   * Esri Rest Api:
-    http://resources.esri.com/help/9.3/arcgisserver/apis/rest/
+    * http://resources.esri.com/help/9.3/arcgisserver/apis/rest/
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
 * Fork the project
