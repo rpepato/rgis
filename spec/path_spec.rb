@@ -4,8 +4,8 @@ describe 'Path Equality And Validation' do
   before(:each) do
     @path = RGis::Path.new()
     @another_path = RGis::Path.new()
-    @path.points << RGis::Point.new(1,3) << RGis::Point.new(4,7) << ::RGis::Point.new(6,8)
-    @another_path.points << RGis::Point.new(1,3) << RGis::Point.new(4,7) << ::RGis::Point.new(6,8)
+    @path.points << RGis::Point.new(13,21) << RGis::Point.new(13,62) << ::RGis::Point.new(35,73)
+    @another_path.points << RGis::Point.new(13,21) << RGis::Point.new(13,62) << ::RGis::Point.new(35,73)
   end
   
   it "should compare equal paths" do
@@ -20,6 +20,10 @@ describe 'Path Equality And Validation' do
     @path.points.pop
     @path.points.pop
     @path.should_not be_valid
+  end
+  
+  it "should expose its points as an array" do
+    @path.to_array.should =~ [[13,21],[13,62],[35,73]]
   end
   
 end

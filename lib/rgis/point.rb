@@ -44,7 +44,7 @@ module RGis
     private 
     
     # Creates a hash from the current instance (using the hashie gem) to be used for json generation
-    def to_hash
+    def to_hash #:nodoc:
       request = Request.new
       request.geometryType = RGis::Helper::GEOMETRY_TYPES[:point]
       request.geometries = to_array
