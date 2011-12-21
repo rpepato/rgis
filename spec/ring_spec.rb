@@ -5,8 +5,8 @@ describe 'Ring Equality and Validation' do
   before(:each) do
     @ring = RGis::Ring.new()
     @another_ring = RGis::Ring.new()
-    @another_ring.points << RGis::Point.new(1,2) << RGis::Point.new(5,6) << RGis::Point.new(-14,6) << RGis::Point.new(1,2)    
-    @ring.points << RGis::Point.new(1,2) << RGis::Point.new(5,6) << RGis::Point.new(-14,6) << RGis::Point.new(1,2)
+    @another_ring.points << RGis::Point.new(-97.06138, 32.837) << RGis::Point.new(-97.06133, 32.836) << RGis::Point.new(-97.06124, 32.834) << RGis::Point.new(-97.06127, 32.832) << RGis::Point.new(-97.06138,32.837)    
+    @ring.points << RGis::Point.new(-97.06138, 32.837) << RGis::Point.new(-97.06133, 32.836) << RGis::Point.new(-97.06124, 32.834) << RGis::Point.new(-97.06127, 32.832) << RGis::Point.new(-97.06138,32.837)
   end
   
   it "should compare equal rings" do
@@ -14,12 +14,11 @@ describe 'Ring Equality and Validation' do
   end
   
   it "should validate a ring with closed polygon" do
-    @ring.points << RGis::Point.new(1,2)
     @ring.should be_valid
   end
   
   it "should reject a ring with less than 4 points" do
-    @ring.points.pop
+    2.times { @ring.points.pop }
     @ring.should_not be_valid
   end
   
@@ -30,7 +29,7 @@ describe 'Ring Equality and Validation' do
   end
   
   it "should return raw data for ring" do
-    @ring.to_array.should =~ [[1,2],[5,6],[-14,6],[1,2]]
+    @ring.to_array.should =~ [[-97.06138,32.837],[-97.06133,32.836],[-97.06124,32.834],[-97.06127,32.832],[-97.06138,32.837]]
   end
   
 end
