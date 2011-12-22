@@ -3,7 +3,7 @@
   request: !ruby/struct:VCR::Request
     method: :post
     uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/project
-    body: f=json&inSR=4326&outSR=102100&geometries=%7b%22geometryType%22%3a%22esriGeometryPolygon%22%2c%22geometries%22%3a%5b%7b%22rings%22%3a%5b%5b%5b2.0%2c2.0%5d%2c%5b4.0%2c4.0%5d%2c%5b6.0%2c6.0%5d%2c%5b2.0%2c2.0%5d%5d%5d%7d%5d%7d
+    body: f=json&inSR=4326&outSR=102100&geometries=%7b%22geometryType%22%3a%22esriGeometryPolygon%22%2c%22geometries%22%3a%5b%7b%22rings%22%3a%5b%5b%5b-97.06138%2c32.837%5d%2c%5b-97.06133%2c32.836%5d%2c%5b-97.06124%2c32.834%5d%2c%5b-97.06127%2c32.832%5d%2c%5b-97.06138%2c32.837%5d%5d%2c%5b%5b-97.06326%2c32.759%5d%2c%5b-97.06298%2c32.755%5d%2c%5b-97.06153%2c32.749%5d%2c%5b-97.06326%2c32.759%5d%5d%5d%7d%5d%7d
     headers:
       content-type:
       - application/x-www-form-urlencoded
@@ -15,16 +15,16 @@
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Wed, 02 Nov 2011 14:13:45 GMT
+      - Wed, 21 Dec 2011 20:11:11 GMT
       etag:
-      - '2070944168'
+      - '312964442'
       server:
       - Microsoft-IIS/7.0
       x-powered-by:
       - ASP.NET
       content-length:
-      - '211'
+      - '400'
       connection:
       - keep-alive
-    body: ! '{"geometryType":"esriGeometryPolygon","geometries":[{"rings":[[[222638.981586547,222684.208505545],[445277.963173094,445640.109656027],[667916.944759641,669141.057044245],[222638.981586547,222684.208505545]]]}]}'
+    body: ! '{"geometryType":"esriGeometryPolygon","geometries":[{"rings":[[[-10804823.3972924,3873688.37165364],[-10804817.8313179,3873555.88336103],[-10804807.8125637,3873290.91125252],[-10804811.1521484,3873025.94511247],[-10804823.3972924,3873688.37165364]],[[-10805032.6779351,3863358.76046768],[-10805001.5084777,3862829.2809139],[-10804840.095216,3862035.10617018],[-10805032.6779351,3863358.76046768]]]}]}'
     http_version: '1.1'

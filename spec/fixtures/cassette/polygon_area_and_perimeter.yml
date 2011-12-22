@@ -3,7 +3,7 @@
   request: !ruby/struct:VCR::Request
     method: :post
     uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/areasAndLengths
-    body: f=json&sr=102009&lengthUnit=9035&areaUnit=%7b%22areaUnit%22%3a%22esriAcres%22%7d&polygons=%5b%7b%22rings%22%3a%5b%5b%5b-628833.344099998%2c206205.236200001%5d%2c%5b-630269.659900002%2c192298.906100001%5d%2c%5b-631848.233800001%2c173991.394400001%5d%2c%5b-616471.690300003%2c341822.557500001%5d%2c%5b-620213.661300004%2c301450.162799999%5d%2c%5b-625923.431999996%2c237538.0579%5d%2c%5b-628833.344099998%2c206205.236200001%5d%5d%5d%7d%5d
+    body: f=json&sr=102009&lengthUnit=9035&areaUnit=%7b%22areaUnit%22%3a%22esriAcres%22%7d&polygons=%5b%7b%22rings%22%3a%5b%5b%5b-97.06138%2c32.837%5d%2c%5b-97.06133%2c32.836%5d%2c%5b-97.06124%2c32.834%5d%2c%5b-97.06127%2c32.832%5d%2c%5b-97.06138%2c32.837%5d%5d%2c%5b%5b-97.06326%2c32.759%5d%2c%5b-97.06298%2c32.755%5d%2c%5b-97.06153%2c32.749%5d%2c%5b-97.06326%2c32.759%5d%5d%5d%7d%5d
     headers:
       content-type:
       - application/x-www-form-urlencoded
@@ -15,16 +15,16 @@
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Wed, 02 Nov 2011 14:13:47 GMT
+      - Thu, 22 Dec 2011 01:19:20 GMT
       etag:
-      - '-1284080267'
+      - '-1374963491'
       server:
       - Microsoft-IIS/7.0
       x-powered-by:
       - ASP.NET
       content-length:
-      - '57'
+      - '66'
       connection:
       - keep-alive
-    body: ! '{"areas":[615.362788718949],"lengths":[209.444905018474]}'
+    body: ! '{"areas":[-4.62087063337152E-10],"lengths":[1.88497297088255E-05]}'
     http_version: '1.1'

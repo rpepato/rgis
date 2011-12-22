@@ -27,7 +27,7 @@ module RGis
     private 
     
     def rings_to_array
-      rings.collect { |r| {:rings => [r.to_array]} }
+      [{:rings => rings.collect {|r| r.to_array}}]
     end
 
     def to_hash
