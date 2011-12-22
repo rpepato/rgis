@@ -27,7 +27,8 @@ module RGis
     private
     
     def paths_to_array
-      paths.collect { |p| {:paths => [p.to_array]} }
+      [{:paths => paths.collect {|p| p.to_array}}]
+      #paths.collect { |p| {:paths => [p.to_array]}}
     end
     
     def to_hash
