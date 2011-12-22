@@ -39,6 +39,7 @@ module RGis
         return RGis::Helper::GEOMETRY_TYPES[:point] if geometry.geometries[0].respond_to?(:x)
         return RGis::Helper::GEOMETRY_TYPES[:polygon] if geometry.geometries[0].respond_to?('rings')
         return RGis::Helper::GEOMETRY_TYPES[:polyline] if geometry.geometries[0].respond_to?('paths')
+        return RGis::Helper::GEOMETRY_TYPES[:envelope] if geometry.geometries[0].respond_to?(:xmax)
       end
       
       def parse_result(response)
@@ -60,6 +61,10 @@ module RGis
             polyline.paths << p
           end
           polyline
+        elsif result_type?(response) == RGis::Helper::GEOMETRY_TYPES[:envelope]
+          lower_left_point = Point.new(response.geometries[0][:xmin], response.geometries[0][:ymin])
+          upper_right_point = Point.new(response.geometries[0][:xmax], response.geometries[0][:ymax])
+          Envelope.new(lower_left_point, upper_right_point)
         end        
       end
       
@@ -79,6 +84,11 @@ module RGis
               self.paths[path_index].points[point_index] = RGis::Point.new(point[0], point[1])
             end
           end
+        elsif result_type?(response) == RGis::Helper::GEOMETRY_TYPES[:envelope]
+          lower_left_point = Point.new(response.geometries[0][:xmin], response.geometries[0][:ymin])
+          upper_right_point = Point.new(response.geometries[0][:xmax], response.geometries[0][:ymax])
+          self.lower_left_point = lower_left_point
+          self.upper_right_point = upper_right_point
         end        
       end
       
