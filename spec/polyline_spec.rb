@@ -27,8 +27,6 @@ describe 'Polyline Geometry' do
     @another_cloned_path.points << RGis::Point.new(-97.06298,32.755)
     @cloned_polyline.paths << @cloned_path
     @cloned_polyline.paths << @another_cloned_path
-    
-    
   end
   
   it "should compare equal polylines" do 
