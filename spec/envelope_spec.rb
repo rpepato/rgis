@@ -46,6 +46,10 @@ describe 'Envelope Geometry' do
       @envelope.project(:from => 4326, :to => 102113).should == projected_envelope
     end
   end
+  
+  it "should raise an exception when simplify method is called" do
+    lambda{@envelope.simplify(nil)}.should raise_error(TypeError, "Simplify operation is not supported on envelope types")
+  end
 
 end
 

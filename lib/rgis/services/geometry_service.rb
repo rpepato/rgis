@@ -20,6 +20,7 @@ module RGis
       
       def simplify(params = {})
         pre_validate_request
+        raise TypeError, "Simplify operation is not supported on envelope types" if self.is_a?(Envelope)
         response = simplify_geometry(params)
         parse_result(response)
       end
