@@ -58,6 +58,7 @@ module RGis
       upper_right_point.y
     end
     
+    # Creates a hash from the current instance (using the hashie gem) to be used for json generation    
     def to_hash #:nodoc:
       request = Request.new
       request.geometryType = RGis::Helper::GEOMETRY_TYPES[:envelope]
@@ -65,6 +66,14 @@ module RGis
       request
     end
     
+    # Converts the current instance to a json representation expected for the esri rest api. 
+    # For example:
+    #   lower_left_point = RGis::Point.new(-46.23477632, -34.27347253)
+    #   upper_right_point = RGis::Point.new(-37.2342324, -12.23452346)
+    #   envelope = RGis::Envelope(lower_left_point, upper_right_point)
+    #   puts envelope.to_json
+    #   
+    #   => {"geometryType":"esriGeometryEnvelope","geometries":[{"xmin":-46.23477632,"ymin":-34.27347253, "xmax": -37.2342324, "ymax": -12.23452346}]}
     def to_json
       JSON.unparse(to_hash)
     end
