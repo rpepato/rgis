@@ -5,7 +5,7 @@ require 'json'
 module RGis
   
   # The RGis envelope class represents an envelope geometry type. An envelope is a closed polygon (a square or a rectangle) that defines some extent to perform GIS operations over it
-  # To create an instance of the envelope object, you'll need to previously create two instances of RGis Point objects and pass these objects to the constructor of the envelope. The first argument represents the lower left of the extent (aka xmin and ymin coordinates). The second argument represents the upper right of the extent (aka xmax and ymax coordinates).
+  # To create an instance of the envelope object, you'll need to have previously create two instances of RGis Point objects and pass these objects to the constructor of the envelope. The first argument represents the lower left of the extent (aka xmin and ymin coordinates). The second argument represents the upper right of the extent (aka xmax and ymax coordinates).
   #   
   #  lower_left = RGis::Point.new(-46.23477632, -34.27347253)
   #  upper_right = RGis::Point.new(-22.7364552, -7.882377643)
