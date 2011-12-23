@@ -27,6 +27,7 @@ module RGis
       
       def buffer(params = {})
         pre_validate_request
+        raise TypeError, "Buffer operation is not supported on envelope types" if self.is_a?(Envelope)        
         response = buffer_geometry(params)
         parse_result(response)
       end

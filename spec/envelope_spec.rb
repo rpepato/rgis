@@ -48,8 +48,12 @@ describe 'Envelope Geometry' do
   end
   
   it "should raise an exception when simplify method is called" do
-    lambda{@envelope.simplify(nil)}.should raise_error(TypeError, "Simplify operation is not supported on envelope types")
+    lambda{@envelope.simplify()}.should raise_error(TypeError, "Simplify operation is not supported on envelope types")
   end
+  
+  it "should raise an exception when buffer method is called" do
+    lambda{@envelope.buffer()}.should raise_error(TypeError, "Buffer operation is not supported on envelope types")
+  end  
 
 end
 
