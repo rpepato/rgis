@@ -52,11 +52,11 @@ module RGis
     end
     
 
-    # Validates the current Polygon. An Polygon is considered valid when it has at least one Ring and each Ring inside it must have at least four Points.
+    # Validates the current Polygon. An Polygon is considered valid when it has at least one Ring and each Ring inside it must have at least four Points, being the first point equal to last point.
     def valid?
       return false unless @rings.count >= 1
       @rings.each do |r|
-        return false unless r.points.count >= 4
+        return false unless r.points.count >= 4 && r.points[0] == r.points[-1]
       end
       true
     end
