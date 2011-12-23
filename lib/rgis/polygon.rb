@@ -24,6 +24,14 @@ module RGis
       JSON.unparse(rings_to_array)      
     end
     
+    def valid?
+      return false unless @rings.count > 1
+      @rings.each do |r|
+        return false unless r.points.count > 1
+      end
+      true
+    end
+    
     private 
     
     def rings_to_array

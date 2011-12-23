@@ -6,33 +6,42 @@ module RGis
     module GeometryService
  
       def project(params = {})
+        pre_validate_request
         response = project_geometry(params)
         parse_result(response)
       end
       
       def project!(params = {})
+        pre_validate_request
         response = project_geometry(params)
         parse_result_for_bang_method(response)
         self
       end 
       
       def simplify(params = {})
+        pre_validate_request
         response = simplify_geometry(params)
         parse_result(response)
       end
       
       def buffer(params = {})
+        pre_validate_request
         response = buffer_geometry(params)
         parse_result(response)
       end
       
       def area_and_perimeter(params = {})
+        pre_validate_request
         raise TypeError, "Area and perimeter operation is allowed only for polygon type" unless self.is_a?(Polygon)
         response = area_and_perimeter_for_geometry(params)
         {:area => response[:areas], :perimeter => response[:lengths]}
       end
                   
       private
+      
+      def pre_validate_request
+        raise "The operation couldn't be performed while the geometry is in an invalid state" unless self.valid?
+      end
       
       def result_type? (geometry)
         return nil unless geometry.respond_to?('geometries')

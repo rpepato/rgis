@@ -1,33 +1,6 @@
 ---
 - !ruby/struct:VCR::HTTPInteraction
   request: !ruby/struct:VCR::Request
-    method: :get
-    uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services?f=json
-    body: !!null 
-    headers: !!null 
-  response: !ruby/struct:VCR::Response
-    status: !ruby/struct:VCR::ResponseStatus
-      code: 200
-      message: OK
-    headers:
-      content-type:
-      - text/plain;charset=utf-8
-      date:
-      - Thu, 22 Dec 2011 16:10:53 GMT
-      etag:
-      - '1139058324'
-      server:
-      - Microsoft-IIS/7.0
-      x-powered-by:
-      - ASP.NET
-      content-length:
-      - '221'
-      connection:
-      - keep-alive
-    body: ! '{"currentVersion":10.01,"folders":["Demographics","Elevation","Locators","Louisville","Network","Petroleum","PublicSafety","Specialty","TaxParcel","WaterTemplate"],"services":[{"name":"Geometry","type":"GeometryServer"}]}'
-    http_version: '1.1'
-- !ruby/struct:VCR::HTTPInteraction
-  request: !ruby/struct:VCR::Request
     method: :post
     uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/project
     body: f=json&inSR=4326&outSR=102113&geometries=%7b%22geometryType%22%3a%22esriGeometryPoint%22%2c%22geometries%22%3a%5b%7b%22x%22%3a-104.53%2c%22y%22%3a34.74%7d%5d%7d
@@ -42,7 +15,7 @@
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Thu, 22 Dec 2011 16:10:54 GMT
+      - Fri, 23 Dec 2011 01:04:23 GMT
       etag:
       - '385305046'
       server:
@@ -71,7 +44,7 @@
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Thu, 22 Dec 2011 16:10:54 GMT
+      - Fri, 23 Dec 2011 01:04:23 GMT
       etag:
       - '-1438888313'
       server:

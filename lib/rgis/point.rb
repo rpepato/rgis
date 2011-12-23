@@ -40,6 +40,11 @@ module RGis
     def to_array
       [{:x => @x, :y => @y}]
     end
+    
+    # Once a point is created, it is always valid
+    def valid?
+      true
+    end
 
     private 
     

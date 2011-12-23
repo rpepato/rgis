@@ -4,8 +4,7 @@ require 'json'
 
 module RGis
   
-  # The RGis envelope class represents an envelope geometry type. An envelope is a closed polygon (a square or a rectangle) that defines some
-  # extent to perform GIS operations over it
+  # The RGis envelope class represents an envelope geometry type. An envelope is a closed polygon (a square or a rectangle) that defines some extent to perform GIS operations over it
   # To create an instance of the envelope object, you'll need to previously create two instances of RGis Point objects and pass these objects to the constructor of the envelope. The first argument represents the lower left of the extent (aka xmin and ymin coordinates). The second argument represents the upper right of the extent (aka xmax and ymax coordinates).
   #   
   #  lower_left = RGis::Point.new(-46.23477632, -34.27347253)
@@ -76,6 +75,11 @@ module RGis
     #   => {"geometryType":"esriGeometryEnvelope","geometries":[{"xmin":-46.23477632,"ymin":-34.27347253, "xmax": -37.2342324, "ymax": -12.23452346}]}
     def to_json
       JSON.unparse(to_hash)
+    end
+    
+    # Validates the current envelope. An envelope is considered valid when its xmin (the x coordinate of the lower_left_point) is lower than its xmax (the x coordinate of the upper_right_point) and its ymin (the y coordinate of the lower_left_point) is lower its ymax (the y coordinate of the upper_right_point)
+    def valid?
+      lower_left_point.x < upper_right_point.x && lower_left_point.y < upper_right_point.y
     end
     
   end

@@ -24,11 +24,18 @@ module RGis
       JSON.unparse(paths_to_array)
     end
     
+    def valid?
+      return false unless @paths.count > 1
+      @paths.each do |p|
+        return false unless p.points.count > 1
+      end
+      true
+    end
+    
     private
     
     def paths_to_array
       [{:paths => paths.collect {|p| p.to_array}}]
-      #paths.collect { |p| {:paths => [p.to_array]}}
     end
     
     def to_hash
