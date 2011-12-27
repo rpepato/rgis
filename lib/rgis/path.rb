@@ -3,6 +3,7 @@ module RGis
   # The path type represents a geometry path (a sequence of points that when connected creates a path). A path is a sequence of points (at least two points) where the first and last point are different each other.
   # This type isn't used to directly manipulate geometries in rgis, but it is used to create an instance of a polyline. 
   class Path
+
     # An array of points that forms the current path instance
     attr_accessor :points
    
@@ -16,7 +17,7 @@ module RGis
     # The instances are equal when each of these points are equals . Otherwise, the method will return false.
     #
     # This method is frequently used by Polyline types, to determine the validity of these geometries    
-    def ==(other)
+    def == (other)
       @points == other.points
     end
    

@@ -11,7 +11,7 @@ module RGis
   # To create an instance of this class, you'll have to have previously created one or more instances of the RGis Ring objects and use those objects to set the rings properties of a new Polygon object instance (Always respecting the clockwise/counterclockwise order as described above).
   #
   # @ring = RGis::Ring.new()
-  # @ring.points << RGis::Point.new(2,2) << RGis::Point.new(4,4) << RGis::Point.new(6,6) << RGis::Point.new(2,2)
+  # @ring.points << RGis::Point.new(2,2) << RGis::Point.new(4,2) << RGis::Point.new(6,6) << RGis::Point.new(2,2)
   # @polygon = RGis::Polygon.new()
   # @polygon.rings << ring
   #
@@ -27,7 +27,7 @@ module RGis
     
     # The == method is use to compare two instances of RGis Polygon for equality.
     # The instances are equal when x and y fields in every point of every ring in both instances are equals. Otherwise, the method will return false.
-    def ==(other)
+    def == (other)
       @rings == other.rings
     end
     
@@ -46,13 +46,14 @@ module RGis
     def to_json
       JSON.unparse(to_hash)
     end
-    
+
+    # Converts the rings in the current instance to a json representation for the esri rest api.
+    # As if the to_json method was called in each ring inside this instance rings' collection.
     def rings_to_json
       JSON.unparse(rings_to_array)      
-    end
-    
+    end    
 
-    # Validates the current Polygon. An Polygon is considered valid when it has at least one Ring and each Ring inside it must also be valid, having at least four Points and being the first point equal to last point.
+    # Validates the current Polygon. A Polygon is considered valid when it has at least one Ring and each Ring inside it must also be valid, having at least four Points and being the first point equal to last point.
     def valid?
       return false unless @rings.count >= 1
       @rings.each do |r|
