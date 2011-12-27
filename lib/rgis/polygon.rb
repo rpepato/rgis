@@ -47,8 +47,8 @@ module RGis
       JSON.unparse(to_hash)
     end
 
-    # Converts the rings in the current instance to a json representation for the esri rest api.
-    # As if the to_json method was called in each ring inside this instance rings' collection.
+    # Converts the Rings in the current instance to a json representation for the esri rest api.
+    # As if the to_json method was called in each Ring inside this instance rings' collection.
     def rings_to_json
       JSON.unparse(rings_to_array)      
     end    

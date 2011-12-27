@@ -14,16 +14,14 @@ module RGis
    
    
     # The == method is use to compare two instances of path type for equality.
-    # The instances are equal when each of these points are equals . Otherwise, the method will return false.
-    #
-    # This method is frequently used by Polyline types, to determine the validity of these geometries    
+    # The instances are equal when each of these points are equals . Otherwise, the method will return false.  
     def == (other)
       @points == other.points
     end
    
-    # Determines when a path geometry is a valid one. Paths are valid when they have at least two points
+    # Determines when a path geometry is a valid one. Paths are valid when they have at least two points and the first point is not the same as the last point.
     def valid?
-      @points.count > 1
+      @points.count > 1 && @points.first != @points.last
     end
     
     # Generate an array of arrays with the path points. Each element of the array is also an array with the x and y point coordinates in the following form: [x,y]
