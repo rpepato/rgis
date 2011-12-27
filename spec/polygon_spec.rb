@@ -22,6 +22,20 @@ describe 'Polygon Geometry' do
   it "should compare equal polygons" do
     @polygon.should == @cloned_polygon
   end
+
+  it "should validate a polygon with one or more valid rings" do
+    @polygon.should be_valid
+  end
+
+  it "should not validate a polygon with no rings" do
+    2.times { @polygon.rings.pop }
+    @polygon.should_not be_valid
+  end
+
+  it "should not validate a polygon with an invalid ring" do
+    @polygon.rings[0].points.pop;
+    @polygon.should_not be_valid
+  end
   
   it "should convert a polygon to a json representation expected by esri api" do
     json = '{"geometryType":"esriGeometryPolygon","geometries":[{"rings":[[[-97.06138,32.837],[-97.06133,32.836],[-97.06124,32.834],[-97.06127,32.832],[-97.06138,32.837]],[[-97.06326,32.759],[-97.06298,32.755],[-97.06153,32.749],[-97.06326,32.759]]]}]}'    

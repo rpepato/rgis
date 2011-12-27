@@ -6,7 +6,7 @@ module RGis
       @points = []
     end
     
-    def ==(other)
+    def == (other)
       @points == other.points
     end
 

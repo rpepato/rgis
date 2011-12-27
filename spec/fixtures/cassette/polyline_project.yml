@@ -28,3 +28,30 @@
       - keep-alive
     body: ! '{"geometryType":"esriGeometryPolyline","geometries":[{"paths":[[[-10804823.3972924,3873688.37165364],[-10804817.8313179,3873555.88336103],[-10804807.8125637,3873290.91125252],[-10804811.1521484,3873025.94511247]],[[-10805032.6779351,3863358.76046768],[-10805001.5084777,3862829.2809139]]]}]}'
     http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :get
+    uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services?f=json
+    body: !!null 
+    headers: !!null 
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - text/plain;charset=utf-8
+      date:
+      - Tue, 27 Dec 2011 11:16:32 GMT
+      etag:
+      - '1139058324'
+      server:
+      - Microsoft-IIS/7.0
+      x-powered-by:
+      - ASP.NET
+      content-length:
+      - '221'
+      connection:
+      - keep-alive
+    body: ! '{"currentVersion":10.01,"folders":["Demographics","Elevation","Locators","Louisville","Network","Petroleum","PublicSafety","Specialty","TaxParcel","WaterTemplate"],"services":[{"name":"Geometry","type":"GeometryServer"}]}'
+    http_version: '1.1'
