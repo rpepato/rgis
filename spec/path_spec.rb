@@ -12,12 +12,17 @@ describe 'Path Equality And Validation' do
     @path.should == @another_path
   end
   
-  it "should validate a polyline when more than one point is present" do
+  it "should validate a path when more than one point is present" do
     @path.should be_valid
   end
   
-  it "should reject a polyline when only a point is present" do
+  it "should reject a path when only a point is present" do
     3.times { @path.points.pop }
+    @path.should_not be_valid
+  end
+
+  it "should reject a path when the first point is equal to the last point" do
+    @path.points << RGis::Point.new(-97.06138, 32.837)
     @path.should_not be_valid
   end
   
