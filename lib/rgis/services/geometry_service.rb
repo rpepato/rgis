@@ -51,6 +51,7 @@ module RGis
         return RGis::Helper::GEOMETRY_TYPES[:polygon] if geometry.geometries[0].respond_to?('rings')
         return RGis::Helper::GEOMETRY_TYPES[:polyline] if geometry.geometries[0].respond_to?('paths')
         return RGis::Helper::GEOMETRY_TYPES[:envelope] if geometry.geometries[0].respond_to?(:xmax)
+        return RGis::Helper::GEOMETRY_TYPES[:multipoint] if geometry.geometries[0].respond_to?(:points)
       end
       
       def parse_result(response)
@@ -76,6 +77,12 @@ module RGis
           lower_left_point = Point.new(response.geometries[0][:xmin], response.geometries[0][:ymin])
           upper_right_point = Point.new(response.geometries[0][:xmax], response.geometries[0][:ymax])
           Envelope.new(lower_left_point, upper_right_point)
+        elsif result_type?(response) == RGis::Helper::GEOMETRY_TYPES[:multipoint]
+          multipoint = RGis::Multipoint.new()
+          response.geometries[0].points.each do |point|
+            multipoint.points << RGis::Point.new(point[0], point[1])
+          end
+          multipoint          
         end        
       end
       
@@ -100,6 +107,10 @@ module RGis
           upper_right_point = Point.new(response.geometries[0][:xmax], response.geometries[0][:ymax])
           self.lower_left_point = lower_left_point
           self.upper_right_point = upper_right_point
+        elsif result_type?(response) == RGis::Helper::GEOMETRY_TYPES[:multipoint] 
+          response.geometries[0].points.each_with_index do |point, point_index|
+            self.points[point_index] = RGis::Point.new(point[0], point[1])
+          end
         end        
       end
       

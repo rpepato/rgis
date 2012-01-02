@@ -1,0 +1,30 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :post
+    uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/simplify
+    body: f=json&sr=4326&geometries=%7b%22geometryType%22%3a%22esriGeometryMultipoint%22%2c%22geometries%22%3a%5b%7b%22points%22%3a%5b%5b-97.06138%2c32.837%5d%2c%5b-97.06133%2c32.836%5d%2c%5b-97.06124%2c32.834%5d%2c%5b-97.06127%2c32.832%5d%5d%7d%5d%7d
+    headers:
+      content-type:
+      - application/x-www-form-urlencoded
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - text/plain;charset=utf-8
+      date:
+      - Mon, 02 Jan 2012 16:21:05 GMT
+      etag:
+      - '-1604782994'
+      server:
+      - Microsoft-IIS/7.0
+      x-powered-by:
+      - ASP.NET
+      content-length:
+      - '191'
+      connection:
+      - keep-alive
+    body: ! '{"geometryType":"esriGeometryMultipoint","geometries":[{"points":[[-97.06138,32.837],[-97.0613299999999,32.8360000000001],[-97.06127,32.8320000000001],[-97.0612399999999,32.8340000000001]]}]}'
+    http_version: '1.1'

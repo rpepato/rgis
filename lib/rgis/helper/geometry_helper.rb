@@ -11,7 +11,8 @@ module RGis
       :point => 'esriGeometryPoint',
       :polygon => 'esriGeometryPolygon',
       :envelope => 'esriGeometryEnvelope',
-      :polyline => 'esriGeometryPolyline'
+      :polyline => 'esriGeometryPolyline',
+      :multipoint => 'esriGeometryMultipoint'
     }      
     
     # valid types for ESRI's Relational Operations

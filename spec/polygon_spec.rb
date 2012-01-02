@@ -134,7 +134,7 @@ describe 'Polygon Geometry' do
     end
   end
   
-  it "should calculate area and perimter for a polygon" do
+  it "should calculate area and perimeter for a polygon" do
     VCR.use_cassette('polygon_area_and_perimeter', :record => :new_episodes) do
       area_and_perimeter = @polygon.area_and_perimeter( :spatial_reference => 102009, 
       :length_unit => RGis::Helper::UNIT_TYPES[:survey_mile],
