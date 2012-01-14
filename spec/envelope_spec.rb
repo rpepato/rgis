@@ -40,6 +40,16 @@ describe 'Envelope Geometry' do
   
   it "should project an envelope from one spatial reference to another and return a new envelope" do
     VCR.use_cassette('envelope_project', :record => :new_episodes) do
+      @envelope.project!(:from => 4326, :to => 102113)
+      @envelope.xmin.should == -4039198.35735226
+      @envelope.ymin.should == -4908723.47218843
+      @envelope.xmax.should == -2815712.08317932
+      @envelope.ymax.should == -1441260.28721334
+    end
+  end
+  
+  it "should project an envelope from one spatial reference and change its points when project! is called" do
+    VCR.use_cassette('envelope_project_bang', :record => :new_episodes) do
       projected_lower_left_point = RGis::Point.new(-4039198.35735226, -4908723.47218843)
       projected_upper_right_point = RGis::Point.new(-2815712.08317932, -1441260.28721334)
       projected_envelope = RGis::Envelope.new(projected_lower_left_point, projected_upper_right_point)

@@ -16,21 +16,21 @@ module RGis
   #
   class Polyline
     include RGis::Services::GeometryService
-    
+
     # An array of RGis Paths used to represent parts of this Polyline.
     attr_accessor :paths
-    
+
     def initialize
       @paths = []
     end
-    
+
     # The == method is use to compare two instances of a Polyline type for equality.
     # The instances are equal when each of the Paths are equals in both objects intances. Otherwise, the method will return false.
     def == (other)
       @paths == other.paths
     end
-    
-    # Converts the current instance to a json representation expected for the esri rest api. 
+
+    # Converts the current instance to a json representation expected for the esri rest api.
     # For example:
     #   @polyline = RGis::Polyline.new()
     #   @first_path = RGis::Path.new()
@@ -39,19 +39,13 @@ module RGis
     #   @second_path.points << RGis::Point.new(-97.06326,32.759) << RGis::Point.new(-97.06298,32.755) << RGis::Point.new(-97.06153,32.749)
     #   @polyline.paths << @first_path << @second_path
     #   puts polyline.to_json
-    #   
+    #
     #   => {"geometryType":"esriGeometryPolyline","geometries":[{"paths":[[[-97.06138,32.837],[-97.06133,32.836],[-97.06124,32.834],[-97.06127,32.832]],[[-97.06326,32.759],[-97.06298,32.755],[-97.06153,32.749]]]}]}
     #
     def to_json
       JSON.unparse(to_hash)
     end
-    
-    # Converts the Paths in the current instance to a json representation for the esri rest api.
-    # As if the to_json method was called in each Path inside this instance paths' collection.
-    def paths_to_json
-      JSON.unparse(paths_to_array)
-    end
-    
+
     # Validates the current Polyline. A Polyline is considered valid when it has at least one Path and, all the paths it contains are also valid.
     def valid?
       return false unless @paths.count > 1
@@ -60,15 +54,15 @@ module RGis
       end
       true
     end
-    
+
     private
-    
+
     # Returns the Paths of the current Polyline instance as an array of array. The array returned is a three-dimensional array.
     # The first dimension, the inner most, is a two element representation of a Point. The second dimension, the middle one, is an array of Point, representing a Path, and the third dimension, the outer-most is the array of the Paths that represent the Polyline.
     def paths_to_array
       [{:paths => paths.collect {|p| p.to_array}}]
     end
-    
+
     # Creates a hash from the current instance (using the hashie gem) to be used for json generation.
     def to_hash
       request = Request.new
@@ -76,6 +70,6 @@ module RGis
       request.geometries = paths_to_array
       request
     end
-    
+
   end
 end
