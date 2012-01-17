@@ -8,6 +8,10 @@ This project has the intention to expose in an easy and flexible way a great amo
 It's still a work in progress (just starting actually), so a lot of code is yet to be written, and any help is welcome.
 The team can guarantee the GIS side, but be gentle with us in the Ruby side. :)
 
+
+Build Status: <a href="https://secure.travis-ci.org/rgis/rgis"><img src="https://secure.travis-ci.org/rgis/rgis.png" /></a>
+
+
 == Current State
 
 The rgis project is in current development. In fact, the work here just started. We are working to finish the first module of the system which will provide a way to access the esri geometry services in ruby. After that we'll continue to improve the project adding support to other services: Feature Service, Map Service, GP Service, Geocode Service, Image Service, Network Service, Geodata Service, Globe Service and Mobile Service.
