@@ -9,7 +9,7 @@ It's still a work in progress (just starting actually), so a lot of code is yet 
 The team can guarantee the GIS side, but be gentle with us in the Ruby side. :)
 
 
-Build Status: <a href="https://secure.travis-ci.org/rgis/rgis"><img src="https://secure.travis-ci.org/rgis/rgis.png" /></a>
+Build Status:  http://travis-ci.org/rgis/rgis.png
 
 
 == Current State
