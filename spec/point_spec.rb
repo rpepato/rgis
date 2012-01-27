@@ -66,7 +66,10 @@ describe 'Point Geometry' do
       lambda{@point.area_and_perimeter(nil)}.should raise_error(TypeError, "Area and perimeter operation is allowed only for polygon type")
     end
   end
-
+  
+  it "should raise an exception when lengths method is called" do
+    lambda{@point.lengths(nil)}.should raise_error(TypeError, "Lengths operation is allowed only for polyline type")
+  end
 end
 
 

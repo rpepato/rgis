@@ -320,6 +320,15 @@ describe 'Polyline Geometry' do
     end
   end
   
+  it "should calculate length for polyline" do
+    VCR.use_cassette('polyline_lengths', :record => :new_episodes) do
+      @polyline.lengths(:spatial_reference => 4326,
+                        :length_unit => RGis::Helper::UNIT_TYPES[:survey_mile],
+                        :geodesic => true)[0].should == 0.620847999321685
+      
+    end
+  end
+  
   it "should raise an exception when area_and_perimeter method is called" do
     lambda{@polyline.area_and_perimeter(nil)}.should raise_error(TypeError, "Area and perimeter operation is allowed only for polygon type")
   end

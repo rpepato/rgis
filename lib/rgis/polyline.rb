@@ -45,6 +45,12 @@ module RGis
     def to_json
       JSON.unparse(to_hash)
     end
+    
+    # Converts the Paths in the current instance to a json representation for the esri rest api.
+    # As if the to_json method was called in each Path inside this instance paths' collection.
+    def paths_to_json
+      JSON.unparse(paths_to_array)      
+    end
 
     # Validates the current Polyline. A Polyline is considered valid when it has at least one Path and, all the paths it contains are also valid.
     def valid?

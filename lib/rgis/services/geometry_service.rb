@@ -38,7 +38,14 @@ module RGis
         response = area_and_perimeter_for_geometry(params)
         {:area => response[:areas], :perimeter => response[:lengths]}
       end
-                  
+      
+      def lengths(params = {})
+        pre_validate_request
+        raise TypeError, "Lengths operation is allowed only for polyline type" unless self.is_a?(Polyline)
+        response = lengths_for_geometry(params)
+        response[:lengths]
+      end 
+      
       private
       
       def pre_validate_request
@@ -157,10 +164,18 @@ module RGis
         response = Lookup.post("#{RGis::Services::ServiceDirectory.geometry_service_uri}/areasAndLengths", request)
         response        
       end
-
+      
+      def lengths_for_geometry(params = {})
+        request = Request.new
+        request.f = 'json'
+        request.sr = params[:spatial_reference]
+        request.lengthUnit = params[:length_unit]
+        request.geodesic = params[:geodesic]
+        request.polylines = self.paths_to_json
+        response = Lookup.post("#{RGis::Services::ServiceDirectory.geometry_service_uri}/lengths", request)
+      end
+      
     end
-
   end
-
 end
 

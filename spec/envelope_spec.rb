@@ -64,6 +64,10 @@ describe 'Envelope Geometry' do
   it "should raise an exception when buffer method is called" do
     lambda{@envelope.buffer()}.should raise_error(TypeError, "Buffer operation is not supported on envelope types")
   end  
+  
+  it "should raise an exception when lengths method is called" do
+     lambda{@envelope.lengths(nil)}.should raise_error(TypeError, "Lengths operation is allowed only for polyline type")
+   end
 
 end
 
