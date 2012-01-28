@@ -146,9 +146,7 @@ describe 'Polygon Geometry' do
   
   it "should generate label points for a polygon" do
     VCR.use_cassette('polygon_label_points', :record => :new_episodes) do
-      label_points = @polygon.label_points(:spatial_reference => 4326)[0]
-      label_points[:x].should == -97.0625899999999
-      label_points[:y].should ==  32.754333333
+      @polygon.label_points(:spatial_reference => 4326).should == [{:x => -97.0625899999999, :y => 32.754333333}]
     end
   end
   

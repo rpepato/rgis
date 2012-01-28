@@ -50,7 +50,7 @@ module RGis
         pre_validate_request
         raise TypeError, "Label points operation is allowed only for polygon type" unless self.is_a?(Polygon)
         response = label_points_for_geometry(params)
-        response[:labelPoints]
+        response[:labelPoints].collect { |l| {:x => l[:x], :y => l[:y]}  }
       end
       
       private
