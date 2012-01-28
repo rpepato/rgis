@@ -12,9 +12,6 @@ group :development do
   gem "rcov", ">= 0"
   gem "vcr", "~> 1.11.3"
   gem "fakeweb", "~> 1.3.0"
-end
-
-group :development, :test do
-	gem 'simplecov', :require => false
-	gem 'metrical'
+  gem 'simplecov', :require => false
+  gem 'metrical'
 end
