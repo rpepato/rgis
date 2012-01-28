@@ -333,4 +333,8 @@ describe 'Polyline Geometry' do
     lambda{@polyline.area_and_perimeter(nil)}.should raise_error(TypeError, "Area and perimeter operation is allowed only for polygon type")
   end
   
+  it "should raise an exception when label_points method is called" do
+    lambda{@polyline.label_points(nil)}.should raise_error(TypeError, "Label points operation is allowed only for polygon type")
+  end
+  
 end

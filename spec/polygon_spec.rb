@@ -144,6 +144,14 @@ describe 'Polygon Geometry' do
     end    
   end
   
+  it "should generate label points for a polygon" do
+    VCR.use_cassette('polygon_label_points', :record => :new_episodes) do
+      label_points = @polygon.label_points(:spatial_reference => 4326)[0]
+      label_points[:x].should == -97.0625899999999
+      label_points[:y].should ==  32.754333333
+    end
+  end
+  
   it "should raise an exception when lengths method is called" do
     lambda{@polygon.lengths(nil)}.should raise_error(TypeError, "Lengths operation is allowed only for polyline type")
   end

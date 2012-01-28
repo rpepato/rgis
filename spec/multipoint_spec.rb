@@ -235,5 +235,9 @@ describe 'Multipoint Geometry' do
   it "should raise an exception when lengths method is called" do
     lambda{@multipoint.lengths(nil)}.should raise_error(TypeError, "Lengths operation is allowed only for polyline type")
   end
+  
+  it "should raise an exception when label_points method is called" do
+    lambda{@multipoint.label_points(nil)}.should raise_error(TypeError, "Label points operation is allowed only for polygon type")
+  end
       
 end

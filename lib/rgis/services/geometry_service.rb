@@ -46,6 +46,13 @@ module RGis
         response[:lengths]
       end 
       
+      def label_points(params = {})
+        pre_validate_request
+        raise TypeError, "Label points operation is allowed only for polygon type" unless self.is_a?(Polygon)
+        response = label_points_for_geometry(params)
+        response[:labelPoints]
+      end
+      
       private
       
       def pre_validate_request
@@ -173,6 +180,14 @@ module RGis
         request.geodesic = params[:geodesic]
         request.polylines = self.paths_to_json
         response = Lookup.post("#{RGis::Services::ServiceDirectory.geometry_service_uri}/lengths", request)
+      end
+      
+      def label_points_for_geometry(params = {})
+        request = Request.new
+        request.f = 'json'
+        request.sr = params[:spatial_reference]
+        request.polygons = self.rings_to_json
+        Lookup.post("#{RGis::Services::ServiceDirectory.geometry_service_uri}/labelPoints", request)
       end
       
     end
