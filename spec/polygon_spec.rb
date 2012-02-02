@@ -150,6 +150,31 @@ describe 'Polygon Geometry' do
     end
   end
   
+  it "should generalize a polygon" do
+    VCR.use_cassette('polygon_generalize', :record => :new_episodes) do
+      
+      generalized_polygon = RGis::Polygon.new()
+      
+      generalized_ring = RGis::Ring.new()
+      generalized_ring.points << RGis::Point.new(-97.06138, 32.837) 
+      generalized_ring.points << RGis::Point.new(-97.06124, 32.834) 
+      generalized_ring.points << RGis::Point.new(-97.06127, 32.832) 
+      generalized_ring.points << RGis::Point.new(-97.06138, 32.837)
+      
+      another_generalized_ring = RGis::Ring.new()
+      another_generalized_ring.points << RGis::Point.new(-97.06326, 32.759) 
+      another_generalized_ring.points << RGis::Point.new(-97.06298, 32.755) 
+      another_generalized_ring.points << RGis::Point.new(-97.06153, 32.749) 
+      another_generalized_ring.points << RGis::Point.new(-97.06326, 32.759)
+      
+      generalized_polygon.rings << generalized_ring << another_generalized_ring
+      
+      @polygon.generalize(:spatial_reference => 4326,
+                          :max_deviation => 0.001,
+                          :deviation_unit => RGis::Helper::UNIT_TYPES[:meter]).should == generalized_polygon
+    end
+  end
+  
   it "should raise an exception when lengths method is called" do
     lambda{@polygon.lengths(nil)}.should raise_error(TypeError, "Lengths operation is allowed only for polyline type")
   end

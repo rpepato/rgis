@@ -329,6 +329,25 @@ describe 'Polyline Geometry' do
     end
   end
   
+  it "should generalize a polyline" do
+    generalized_polyline = RGis::Polyline.new()
+    generalized_path = RGis::Path.new()
+    generalized_path.points << RGis::Point.new(-97.06138, 32.837) 
+    generalized_path.points << RGis::Point.new(-97.06127, 32.832)
+    
+    another_generalized_path = RGis::Path.new()
+    another_generalized_path.points << RGis::Point.new(-97.06326, 32.759)
+    another_generalized_path.points << RGis::Point.new(-97.06298, 32.755)  
+    
+    generalized_polyline.paths << generalized_path << another_generalized_path
+    
+    VCR.use_cassette('polyline_generalize', :record => :new_episodes) do
+      @polyline.generalize(:spatial_reference => 4326,
+                           :max_deviation => 0.001,
+                           :deviation_unit => RGis::Helper::UNIT_TYPES[:meter]).should == generalized_polyline
+    end
+  end
+  
   it "should raise an exception when area_and_perimeter method is called" do
     lambda{@polyline.area_and_perimeter(nil)}.should raise_error(TypeError, "Area and perimeter operation is allowed only for polygon type")
   end

@@ -53,6 +53,12 @@ module RGis
         response[:labelPoints].collect { |l| {:x => l[:x], :y => l[:y]}  }
       end
       
+      def generalize(params = {})
+        pre_validate_request
+        raise TypeError, "Generalize opertion is allowed only for polygon or polyline types" unless self.is_a?(Polygon) || self.is_a?(Polyline)
+        parse_result(generalize_for_geometry(params))
+      end
+      
       private
       
       def pre_validate_request
@@ -188,6 +194,16 @@ module RGis
         request.sr = params[:spatial_reference]
         request.polygons = self.rings_to_json
         Lookup.post("#{RGis::Services::ServiceDirectory.geometry_service_uri}/labelPoints", request)
+      end
+      
+      def generalize_for_geometry(params = {})
+        request = Request.new
+        request.f = 'json'
+        request.sr = params[:spatial_reference]
+        request.maxDeviation = params[:max_deviation]
+        request.deviationUnit = params[:deviation_unit]
+        request.geometries = self.to_json
+        Lookup.post("#{RGis::Services::ServiceDirectory.geometry_service_uri}/generalize", request)
       end
       
     end

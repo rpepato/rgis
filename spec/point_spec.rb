@@ -74,6 +74,10 @@ describe 'Point Geometry' do
   it "should raise an exception when label_points method is called" do
     lambda{@point.label_points(nil)}.should raise_error(TypeError, "Label points operation is allowed only for polygon type")
   end
+  
+  it "should raise an exception when generalize method is called" do
+      lambda{@point.generalize(nil)}.should raise_error(TypeError, "Generalize opertion is allowed only for polygon or polyline types")
+   end
 end
 
 
