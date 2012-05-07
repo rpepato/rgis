@@ -1,19 +1,25 @@
 ---
-- !ruby/struct:VCR::HTTPInteraction
-  request: !ruby/struct:VCR::Request
-    method: :get
-    uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services?f=json
-    body: 
-    headers: 
-  response: !ruby/struct:VCR::Response
-    status: !ruby/struct:VCR::ResponseStatus
+http_interactions:
+- request:
+    method: get
+    uri: http://sampleserver1.arcgisonline.com/ArcGIS/rest/services?f=json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      accept:
+      - ! '*/*'
+      user-agent:
+      - Ruby
+  response:
+    status:
       code: 200
       message: OK
     headers:
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Mon, 07 May 2012 14:48:38 GMT
+      - Mon, 07 May 2012 15:00:57 GMT
       etag:
       - '1139058324'
       server:
@@ -24,25 +30,33 @@
       - '221'
       connection:
       - keep-alive
-    body: ! '{"currentVersion":10.01,"folders":["Demographics","Elevation","Locators","Louisville","Network","Petroleum","PublicSafety","Specialty","TaxParcel","WaterTemplate"],"services":[{"name":"Geometry","type":"GeometryServer"}]}'
+    body:
+      encoding: US-ASCII
+      string: ! '{"currentVersion":10.01,"folders":["Demographics","Elevation","Locators","Louisville","Network","Petroleum","PublicSafety","Specialty","TaxParcel","WaterTemplate"],"services":[{"name":"Geometry","type":"GeometryServer"}]}'
     http_version: '1.1'
-- !ruby/struct:VCR::HTTPInteraction
-  request: !ruby/struct:VCR::Request
-    method: :post
-    uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/project
-    body: f=json&inSR=4326&outSR=102113&geometries=%7B%22geometryType%22%3A%22esriGeometryEnvelope%22%2C%22geometries%22%3A%5B%7B%22xmin%22%3A-36.2847362%2C%22ymin%22%3A-40.29376351%2C%22xmax%22%3A-25.293972%2C%22ymax%22%3A-12.83826382%7D%5D%7D
+  recorded_at: Mon, 07 May 2012 15:00:58 GMT
+- request:
+    method: post
+    uri: http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer/project
+    body:
+      encoding: US-ASCII
+      string: f=json&inSR=4326&outSR=102113&geometries=%7B%22geometryType%22%3A%22esriGeometryEnvelope%22%2C%22geometries%22%3A%5B%7B%22xmin%22%3A-36.2847362%2C%22ymin%22%3A-40.29376351%2C%22xmax%22%3A-25.293972%2C%22ymax%22%3A-12.83826382%7D%5D%7D
     headers:
+      accept:
+      - ! '*/*'
+      user-agent:
+      - Ruby
       content-type:
       - application/x-www-form-urlencoded
-  response: !ruby/struct:VCR::Response
-    status: !ruby/struct:VCR::ResponseStatus
+  response:
+    status:
       code: 200
       message: OK
     headers:
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Mon, 07 May 2012 14:48:38 GMT
+      - Mon, 07 May 2012 15:00:58 GMT
       etag:
       - '741637594'
       server:
@@ -53,5 +67,9 @@
       - '118'
       connection:
       - keep-alive
-    body: ! '{"geometries":[{"xmin":-4039198.35735226,"ymin":-4908723.47218843,"xmax":-2815712.08317932,"ymax":-1441260.28721334}]}'
+    body:
+      encoding: US-ASCII
+      string: ! '{"geometries":[{"xmin":-4039198.35735226,"ymin":-4908723.47218843,"xmax":-2815712.08317932,"ymax":-1441260.28721334}]}'
     http_version: '1.1'
+  recorded_at: Mon, 07 May 2012 15:00:58 GMT
+recorded_with: VCR 2.1.1

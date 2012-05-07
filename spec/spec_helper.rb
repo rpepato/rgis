@@ -26,9 +26,9 @@ RSpec.configure do |config|
   config.extend VCR::RSpec::Macros
 end
 
-VCR.config do |c|
+VCR.configure do |c|
   c.cassette_library_dir = 'spec/fixtures/cassette'
-  c.stub_with :fakeweb
+  c.hook_into :fakeweb
   c.default_cassette_options = { :record => :none }
   c.allow_http_connections_when_no_cassette = false
 end

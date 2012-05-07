@@ -1,21 +1,27 @@
 ---
-- !ruby/struct:VCR::HTTPInteraction
-  request: !ruby/struct:VCR::Request
-    method: :post
-    uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/project
-    body: f=json&inSR=102100&outSR=4326&geometries=%7B%22geometryType%22%3A%22esriGeometryMultipoint%22%2C%22geometries%22%3A%5B%7B%22points%22%3A%5B%5B-97.06138%2C32.837%5D%2C%5B-97.06133%2C32.836%5D%2C%5B-97.06124%2C32.834%5D%2C%5B-97.06127%2C32.832%5D%5D%7D%5D%7D
+http_interactions:
+- request:
+    method: post
+    uri: http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer/project
+    body:
+      encoding: US-ASCII
+      string: f=json&inSR=102100&outSR=4326&geometries=%7B%22geometryType%22%3A%22esriGeometryMultipoint%22%2C%22geometries%22%3A%5B%7B%22points%22%3A%5B%5B-97.06138%2C32.837%5D%2C%5B-97.06133%2C32.836%5D%2C%5B-97.06124%2C32.834%5D%2C%5B-97.06127%2C32.832%5D%5D%7D%5D%7D
     headers:
+      accept:
+      - ! '*/*'
+      user-agent:
+      - Ruby
       content-type:
       - application/x-www-form-urlencoded
-  response: !ruby/struct:VCR::Response
-    status: !ruby/struct:VCR::ResponseStatus
+  response:
+    status:
       code: 200
       message: OK
     headers:
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Mon, 07 May 2012 14:48:39 GMT
+      - Mon, 07 May 2012 15:01:01 GMT
       etag:
       - '-507312874'
       server:
@@ -26,5 +32,9 @@
       - '249'
       connection:
       - keep-alive
-    body: ! '{"geometryType":"esriGeometryMultipoint","geometries":[{"points":[[-0.000871917211517328,0.000294979789848263],[-0.000871916762359686,0.000294970806689621],[-0.000871915953875931,0.000294952840385059],[-0.000871916223370516,0.000294934874080496]]}]}'
+    body:
+      encoding: US-ASCII
+      string: ! '{"geometryType":"esriGeometryMultipoint","geometries":[{"points":[[-0.000871917211517328,0.000294979789848263],[-0.000871916762359686,0.000294970806689621],[-0.000871915953875931,0.000294952840385059],[-0.000871916223370516,0.000294934874080496]]}]}'
     http_version: '1.1'
+  recorded_at: Mon, 07 May 2012 15:01:01 GMT
+recorded_with: VCR 2.1.1
