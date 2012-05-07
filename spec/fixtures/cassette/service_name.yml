@@ -3,8 +3,8 @@
   request: !ruby/struct:VCR::Request
     method: :get
     uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services?f=json
-    body: !!null 
-    headers: !!null 
+    body: 
+    headers: 
   response: !ruby/struct:VCR::Response
     status: !ruby/struct:VCR::ResponseStatus
       code: 200
@@ -13,7 +13,7 @@
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Fri, 23 Dec 2011 17:20:33 GMT
+      - Mon, 07 May 2012 14:48:53 GMT
       etag:
       - '1139058324'
       server:

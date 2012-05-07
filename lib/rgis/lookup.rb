@@ -14,8 +14,19 @@ module RGis
     end
     
     def self.post(uri, args={})
+      u = URI.parse(uri)
       response, body = Net::HTTP.post_form(URI.parse(uri), args)
-      Response.new(JSON.parse(body))
+      if (ENV["RUBY_VERSION"].index("1.9.2"))
+        Response.new(JSON.parse(body))        
+      else
+        Response.new(JSON.parse(response.body))
+      end
+      #response =  Curl::Easy.http_post(uri, JSON.unparse(args)) do |curl|
+      #              curl.headers['Accept'] = 'application/json'
+      #              curl.headers['Content-Type'] = 'application/json'
+      #              curl.headers['Api-Version'] = '2.2'
+      #            end
+      #Response.New(JSON.parse(response.body_str))
     end
     
     # convert a hash to http query string

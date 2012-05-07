@@ -3,7 +3,7 @@
   request: !ruby/struct:VCR::Request
     method: :post
     uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/buffer
-    body: f=json&inSR=4326&outSR=102100&bufferSR=102100&distances=0.01&unit=9003&unionResults=false&geometries=%7b%22geometryType%22%3a%22esriGeometryPoint%22%2c%22geometries%22%3a%5b%7b%22x%22%3a-104.53%2c%22y%22%3a34.74%7d%5d%7d
+    body: f=json&inSR=4326&outSR=102100&bufferSR=102100&distances=0.01&unit=9003&unionResults=false&geometries=%7B%22geometryType%22%3A%22esriGeometryPoint%22%2C%22geometries%22%3A%5B%7B%22x%22%3A-104.53%2C%22y%22%3A34.74%7D%5D%7D
     headers:
       content-type:
       - application/x-www-form-urlencoded
@@ -15,7 +15,7 @@
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Fri, 23 Dec 2011 17:20:25 GMT
+      - Mon, 07 May 2012 14:48:44 GMT
       etag:
       - '1727644932'
       server:

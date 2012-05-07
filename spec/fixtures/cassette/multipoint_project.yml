@@ -3,7 +3,7 @@
   request: !ruby/struct:VCR::Request
     method: :post
     uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/project
-    body: f=json&inSR=102100&outSR=4326&geometries=%7b%22geometryType%22%3a%22esriGeometryMultipoint%22%2c%22geometries%22%3a%5b%7b%22points%22%3a%5b%5b-97.06138%2c32.837%5d%2c%5b-97.06133%2c32.836%5d%2c%5b-97.06124%2c32.834%5d%2c%5b-97.06127%2c32.832%5d%5d%7d%5d%7d
+    body: f=json&inSR=102100&outSR=4326&geometries=%7B%22geometryType%22%3A%22esriGeometryMultipoint%22%2C%22geometries%22%3A%5B%7B%22points%22%3A%5B%5B-97.06138%2C32.837%5D%2C%5B-97.06133%2C32.836%5D%2C%5B-97.06124%2C32.834%5D%2C%5B-97.06127%2C32.832%5D%5D%7D%5D%7D
     headers:
       content-type:
       - application/x-www-form-urlencoded
@@ -15,7 +15,7 @@
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Mon, 02 Jan 2012 16:15:38 GMT
+      - Mon, 07 May 2012 14:48:39 GMT
       etag:
       - '-507312874'
       server:
@@ -27,31 +27,4 @@
       connection:
       - keep-alive
     body: ! '{"geometryType":"esriGeometryMultipoint","geometries":[{"points":[[-0.000871917211517328,0.000294979789848263],[-0.000871916762359686,0.000294970806689621],[-0.000871915953875931,0.000294952840385059],[-0.000871916223370516,0.000294934874080496]]}]}'
-    http_version: '1.1'
-- !ruby/struct:VCR::HTTPInteraction
-  request: !ruby/struct:VCR::Request
-    method: :get
-    uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services?f=json
-    body: !!null 
-    headers: !!null 
-  response: !ruby/struct:VCR::Response
-    status: !ruby/struct:VCR::ResponseStatus
-      code: 200
-      message: OK
-    headers:
-      content-type:
-      - text/plain;charset=utf-8
-      date:
-      - Mon, 02 Jan 2012 16:19:49 GMT
-      etag:
-      - '1139058324'
-      server:
-      - Microsoft-IIS/7.0
-      x-powered-by:
-      - ASP.NET
-      content-length:
-      - '221'
-      connection:
-      - keep-alive
-    body: ! '{"currentVersion":10.01,"folders":["Demographics","Elevation","Locators","Louisville","Network","Petroleum","PublicSafety","Specialty","TaxParcel","WaterTemplate"],"services":[{"name":"Geometry","type":"GeometryServer"}]}'
     http_version: '1.1'

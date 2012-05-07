@@ -3,7 +3,7 @@
   request: !ruby/struct:VCR::Request
     method: :post
     uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/simplify
-    body: f=json&sr=4326&geometries=%7b%22geometryType%22%3a%22esriGeometryMultipoint%22%2c%22geometries%22%3a%5b%7b%22points%22%3a%5b%5b-97.06138%2c32.837%5d%2c%5b-97.06133%2c32.836%5d%2c%5b-97.06124%2c32.834%5d%2c%5b-97.06127%2c32.832%5d%5d%7d%5d%7d
+    body: f=json&sr=4326&geometries=%7B%22geometryType%22%3A%22esriGeometryMultipoint%22%2C%22geometries%22%3A%5B%7B%22points%22%3A%5B%5B-97.06138%2C32.837%5D%2C%5B-97.06133%2C32.836%5D%2C%5B-97.06124%2C32.834%5D%2C%5B-97.06127%2C32.832%5D%5D%7D%5D%7D
     headers:
       content-type:
       - application/x-www-form-urlencoded
@@ -15,7 +15,7 @@
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Mon, 02 Jan 2012 16:21:05 GMT
+      - Mon, 07 May 2012 14:48:40 GMT
       etag:
       - '-1604782994'
       server:

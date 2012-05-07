@@ -3,8 +3,8 @@
   request: !ruby/struct:VCR::Request
     method: :get
     uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services?f=json
-    body: !!null 
-    headers: !!null 
+    body: 
+    headers: 
   response: !ruby/struct:VCR::Response
     status: !ruby/struct:VCR::ResponseStatus
       code: 200
@@ -13,7 +13,7 @@
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Fri, 23 Dec 2011 17:20:20 GMT
+      - Mon, 07 May 2012 14:48:38 GMT
       etag:
       - '1139058324'
       server:
@@ -30,7 +30,7 @@
   request: !ruby/struct:VCR::Request
     method: :post
     uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/project
-    body: f=json&inSR=4326&outSR=102113&geometries=%7b%22geometryType%22%3a%22esriGeometryEnvelope%22%2c%22geometries%22%3a%5b%7b%22xmin%22%3a-36.2847362%2c%22ymin%22%3a-40.29376351%2c%22xmax%22%3a-25.293972%2c%22ymax%22%3a-12.83826382%7d%5d%7d
+    body: f=json&inSR=4326&outSR=102113&geometries=%7B%22geometryType%22%3A%22esriGeometryEnvelope%22%2C%22geometries%22%3A%5B%7B%22xmin%22%3A-36.2847362%2C%22ymin%22%3A-40.29376351%2C%22xmax%22%3A-25.293972%2C%22ymax%22%3A-12.83826382%7D%5D%7D
     headers:
       content-type:
       - application/x-www-form-urlencoded
@@ -42,7 +42,7 @@
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Fri, 23 Dec 2011 17:20:20 GMT
+      - Mon, 07 May 2012 14:48:38 GMT
       etag:
       - '741637594'
       server:

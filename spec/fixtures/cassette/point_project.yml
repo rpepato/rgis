@@ -3,7 +3,7 @@
   request: !ruby/struct:VCR::Request
     method: :post
     uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/project
-    body: f=json&inSR=4326&outSR=102113&geometries=%7b%22geometryType%22%3a%22esriGeometryPoint%22%2c%22geometries%22%3a%5b%7b%22x%22%3a-104.53%2c%22y%22%3a34.74%7d%5d%7d
+    body: f=json&inSR=4326&outSR=102113&geometries=%7B%22geometryType%22%3A%22esriGeometryPoint%22%2C%22geometries%22%3A%5B%7B%22x%22%3A-104.53%2C%22y%22%3A34.74%7D%5D%7D
     headers:
       content-type:
       - application/x-www-form-urlencoded
@@ -15,7 +15,7 @@
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Fri, 23 Dec 2011 17:20:23 GMT
+      - Mon, 07 May 2012 14:48:42 GMT
       etag:
       - '385305046'
       server:
@@ -32,7 +32,7 @@
   request: !ruby/struct:VCR::Request
     method: :post
     uri: http://sampleserver1.arcgisonline.com:80/ArcGIS/rest/services/Geometry/GeometryServer/project
-    body: f=json&inSR=102113&outSR=4326&geometries=%7b%22geometryType%22%3a%22esriGeometryPoint%22%2c%22geometries%22%3a%5b%7b%22x%22%3a-11636226.3726209%2c%22y%22%3a4128604.07739995%7d%5d%7d
+    body: f=json&inSR=102113&outSR=4326&geometries=%7B%22geometryType%22%3A%22esriGeometryPoint%22%2C%22geometries%22%3A%5B%7B%22x%22%3A-11636226.3726209%2C%22y%22%3A4128604.07739995%7D%5D%7D
     headers:
       content-type:
       - application/x-www-form-urlencoded
@@ -44,7 +44,7 @@
       content-type:
       - text/plain;charset=utf-8
       date:
-      - Fri, 23 Dec 2011 17:20:24 GMT
+      - Mon, 07 May 2012 14:48:43 GMT
       etag:
       - '-1438888313'
       server:
