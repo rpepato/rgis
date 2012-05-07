@@ -8,9 +8,7 @@ This project has the intention to expose in an easy and flexible way a great amo
 It's still a work in progress (just starting actually), so a lot of code is yet to be written, and any help is welcome.
 The team can guarantee the GIS side, but be gentle with us in the Ruby side. :)
 
-
-{Build Status}[http://travis-ci.org/rgis/rgis]:  http://travis-ci.org/rgis/rgis.png
-
+{<img src="https://secure.travis-ci.org/rgis/rgis.png?branch=master" alt="Build Status" />}[http://travis-ci.org/rgis/rgis]
 
 == Current State
 
