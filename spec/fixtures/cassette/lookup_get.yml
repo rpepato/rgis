@@ -1,38 +1,34 @@
----
-http_interactions:
-- request:
-    method: get
-    uri: http://sampleserver1.arcgisonline.com/ArcGIS/rest/services?f=json
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      accept:
-      - ! '*/*'
-      user-agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      content-type:
-      - text/plain;charset=utf-8
-      date:
-      - Mon, 07 May 2012 15:00:59 GMT
-      etag:
-      - '1139058324'
-      server:
-      - Microsoft-IIS/7.0
-      x-powered-by:
-      - ASP.NET
-      content-length:
-      - '221'
-      connection:
-      - keep-alive
-    body:
-      encoding: US-ASCII
-      string: ! '{"currentVersion":10.01,"folders":["Demographics","Elevation","Locators","Louisville","Network","Petroleum","PublicSafety","Specialty","TaxParcel","WaterTemplate"],"services":[{"name":"Geometry","type":"GeometryServer"}]}'
-    http_version: '1.1'
-  recorded_at: Mon, 07 May 2012 15:01:00 GMT
+--- 
+http_interactions: 
+  - request: 
+      method: get
+      uri: http://sampleserver1.arcgisonline.com/ArcGIS/rest/services?f=json
+      body: 
+        string: ""
+      headers: 
+        accept: 
+          - "*/*"
+    response: 
+      status: 
+        code: 200
+        message: OK
+      headers: 
+        content-type: 
+          - text/plain;charset=utf-8
+        date: 
+          - Mon, 07 May 2012 16:41:46 GMT
+        etag: 
+          - "1139058324"
+        server: 
+          - Microsoft-IIS/7.0
+        x-powered-by: 
+          - ASP.NET
+        content-length: 
+          - "221"
+        connection: 
+          - keep-alive
+      body: 
+        string: "{\"currentVersion\":10.01,\"folders\":[\"Demographics\",\"Elevation\",\"Locators\",\"Louisville\",\"Network\",\"Petroleum\",\"PublicSafety\",\"Specialty\",\"TaxParcel\",\"WaterTemplate\"],\"services\":[{\"name\":\"Geometry\",\"type\":\"GeometryServer\"}]}"
+      http_version: "1.1"
+    recorded_at: Mon, 07 May 2012 16:41:46 GMT
 recorded_with: VCR 2.1.1

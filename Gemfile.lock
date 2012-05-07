@@ -7,6 +7,7 @@ GEM
       multi_json (~> 1.0)
     arrayfields (4.7.4)
     awesome_print (1.0.2)
+    bouncy-castle-java (1.5.0146.1)
     chronic (0.3.0)
     churn (0.0.15)
       arrayfields (= 4.7.4)
@@ -44,7 +45,10 @@ GEM
       bundler (~> 1.0)
       git (>= 1.2.5)
       rake
+    jruby-openssl (0.7.6.1)
+      bouncy-castle-java (>= 1.5.0146.1)
     json (1.6.1)
+    json (1.6.1-java)
     json_pure (1.7.1)
     main (4.7.1)
     map (4.3.0)
@@ -75,6 +79,7 @@ GEM
       sexp_processor
     rake (0.9.2.2)
     rcov (0.9.11)
+    rcov (0.9.11-java)
     reek (1.2.8)
       ruby2ruby (~> 1.2)
       ruby_parser (~> 2.0)
@@ -103,6 +108,7 @@ GEM
     vcr (2.1.1)
 
 PLATFORMS
+  java
   ruby
 
 DEPENDENCIES
@@ -110,6 +116,7 @@ DEPENDENCIES
   fakeweb
   hashie
   jeweler
+  jruby-openssl
   metrical
   rcov
   rspec

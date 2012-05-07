@@ -15,3 +15,7 @@ group :development do
   gem 'simplecov'
   gem 'metrical'
 end
+
+platforms :jruby do
+  gem "jruby-openssl"
+end

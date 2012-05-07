@@ -1,40 +1,36 @@
----
-http_interactions:
-- request:
-    method: post
-    uri: http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer/lengths
-    body:
-      encoding: US-ASCII
-      string: f=json&sr=4326&lengthUnit=9035&geodesic=true&polylines=%5B%7B%22paths%22%3A%5B%5B%5B-97.06138%2C32.837%5D%2C%5B-97.06133%2C32.836%5D%2C%5B-97.06124%2C32.834%5D%2C%5B-97.06127%2C32.832%5D%5D%2C%5B%5B-97.06326%2C32.759%5D%2C%5B-97.06298%2C32.755%5D%5D%5D%7D%5D
-    headers:
-      accept:
-      - ! '*/*'
-      user-agent:
-      - Ruby
-      content-type:
-      - application/x-www-form-urlencoded
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      content-type:
-      - text/plain;charset=utf-8
-      date:
-      - Mon, 07 May 2012 15:01:12 GMT
-      etag:
-      - '-1018185149'
-      server:
-      - Microsoft-IIS/7.0
-      x-powered-by:
-      - ASP.NET
-      content-length:
-      - '31'
-      connection:
-      - keep-alive
-    body:
-      encoding: US-ASCII
-      string: ! '{"lengths":[0.620847999321685]}'
-    http_version: '1.1'
-  recorded_at: Mon, 07 May 2012 15:01:12 GMT
+--- 
+http_interactions: 
+  - request: 
+      method: post
+      uri: http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer/lengths
+      body: 
+        string: f=json&sr=4326&lengthUnit=9035&geodesic=true&polylines=%5b%7b%22paths%22%3a%5b%5b%5b-97.06138%2c32.837%5d%2c%5b-97.06133%2c32.836%5d%2c%5b-97.06124%2c32.834%5d%2c%5b-97.06127%2c32.832%5d%5d%2c%5b%5b-97.06326%2c32.759%5d%2c%5b-97.06298%2c32.755%5d%5d%5d%7d%5d
+      headers: 
+        accept: 
+          - "*/*"
+        content-type: 
+          - application/x-www-form-urlencoded
+    response: 
+      status: 
+        code: 200
+        message: OK
+      headers: 
+        content-type: 
+          - text/plain;charset=utf-8
+        date: 
+          - Mon, 07 May 2012 16:42:00 GMT
+        etag: 
+          - "-1018185149"
+        server: 
+          - Microsoft-IIS/7.0
+        x-powered-by: 
+          - ASP.NET
+        content-length: 
+          - "31"
+        connection: 
+          - keep-alive
+      body: 
+        string: "{\"lengths\":[0.620847999321685]}"
+      http_version: "1.1"
+    recorded_at: Mon, 07 May 2012 16:42:00 GMT
 recorded_with: VCR 2.1.1
