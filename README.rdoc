@@ -1,5 +1,7 @@
 = rgis
 
+**IMPORTANT NOTICE:** The development of this project has stopped. If you need to develop a web application using ArcGIS, take a look at the ArcGIS API for Javascript.
+
 == Unleash the power of GIS.
 
 * Enjoy all the power of the GIS world in your application, accessing the features of the ESRI ArcGIS Server in the ruby way.
@@ -91,4 +93,3 @@ The geometry operations on polygons work as previously shown for point and polyl
 == Copyright
 
 Copyright (c) 2011 Rgis. See LICENSE.txt for further details.
-
