@@ -1,6 +1,6 @@
 = rgis
 
-**IMPORTANT NOTICE:** The development of this project has stopped. If you need to develop a web application using ArcGIS, take a look at the ArcGIS API for Javascript.
+IMPORTANT NOTICE: The development of this project has stopped. If you need to develop a web application using ArcGIS, take a look at the ArcGIS API for Javascript.
 
 == Unleash the power of GIS.
 
