@@ -12,7 +12,7 @@ The team can guarantee the GIS side, but be gentle with us in the Ruby side. :)
 
 == Current State
 
-_Important Notice_: The development of this project has stopped. If you need to develop a web application using ArcGIS, take a look at the ArcGIS API for Javascript.
+<b>Important Notice:</b> The development of this project has stopped. If you need to develop a web application using ArcGIS, take a look at the ArcGIS API for Javascript.
 
 == How to use rgis
 
